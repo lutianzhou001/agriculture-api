@@ -8,6 +8,7 @@ import {
 
 import { User } from './classes/user.class'
 import { Result } from './classes/result.class'
+import { IsAccountAvailableDto } from './dto/isAccountAvailable.dto'
 import { SendVerificationCodeDto } from './dto/sendVerificationCode.dto'
 import { SignupDto } from './dto/signup.dto'
 import { ForgetPasswordDto } from './dto/forgetPassword.dto'
@@ -22,7 +23,6 @@ import { ChangePasswordDto } from './dto/changePassword.dto'
 
 var resultMock = new Result();
 
-
 @ApiBearerAuth()
 @ApiTags('users')
 @Controller('users')
@@ -32,7 +32,7 @@ export class UsersController{
   @Post('/isAccountAvailable')
   @ApiOperation({ summary: 'check if the user is available'})
   @ApiResponse({status: 403, description:'Forbidden.'})
-  async isAccountAvailable(@Body() account: string): Promise<Result> {
+  async isAccountAvailable(@Body() isAccountAvailable: IsAccountAvailableDto): Promise<Result> {
 
     return resultMock;
 
