@@ -3,9 +3,5 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class BindTOTPDto {
 
-  @ApiProperty()
-  @IsString()
-  readonly account: string;
-
 }
 
