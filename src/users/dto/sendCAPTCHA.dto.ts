@@ -1,7 +1,7 @@
 import { IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { VerifyDto }  from './verify.dto'
-export class SignupDto {
+
+export class SendCAPTCHA {
 
   @ApiProperty()
   @IsString()
@@ -13,11 +13,6 @@ export class SignupDto {
 
   @ApiProperty()
   @IsString()
-  readonly password: string;
-
-  @ApiProperty()
-  @IsString()
-  readonly verify: VerifyDto;
+  readonly usage: string;
 
 }
-

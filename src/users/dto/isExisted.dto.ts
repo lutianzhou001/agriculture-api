@@ -1,10 +1,14 @@
 import { IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class IsAccountAvailableDto {
+export class IsExistedDto {
 
   @ApiProperty()
   @IsString()
-  readonly account: string;
+  readonly mail: string;
+
+  @ApiProperty()
+  @IsString()
+  readonly phone: string;
 
 }

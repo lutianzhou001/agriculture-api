@@ -5,7 +5,7 @@ export class VerifyDto {
 
   @ApiProperty()
   @IsString()
-  readonly googleAuth: number;
+  readonly TOTPAuth: number;
 
   @ApiProperty()
   @IsString()
@@ -13,7 +13,7 @@ export class VerifyDto {
 
   @ApiProperty()
   @IsString()
-  readonly smsAuth: number;
+  readonly phoneAuth: number;
 
 }
 
