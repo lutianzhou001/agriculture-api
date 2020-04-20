@@ -1,11 +1,11 @@
 import { IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class BindMailorSmsDto {
+export class BindMailDto {
 
   @ApiProperty()
   @IsString()
-  readonly account: string;
+  readonly mail: string;
 
 }
 
