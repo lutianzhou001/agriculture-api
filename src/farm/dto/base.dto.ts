@@ -9,6 +9,10 @@ export class BaseDto {
 
     @ApiProperty()
     @IsString()
+    readonly enterpriseDid: string;
+
+    @ApiProperty()
+    @IsString()
     readonly name: string;
 
     @ApiPropertyOptional()
