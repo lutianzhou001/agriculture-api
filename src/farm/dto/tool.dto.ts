@@ -1,12 +1,11 @@
 import { IsString, IsIn, IsNumber, IsDate } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { read } from 'fs';
 
 export class ToolDto {
 
     @ApiProperty()
     @IsString()
-    readonly DID: string;
+    readonly did: string;
 
     @ApiProperty()
     @IsString()
@@ -17,9 +16,9 @@ export class ToolDto {
     readonly spec: string;
 
     @ApiProperty()
-    @IsNumber()
-    @IsIn([1, 2, 3, 4, 5])
-    readonly type: number;
+    @IsString()
+    @IsIn(['SEEDS', 'PESTICIDE', 'FERTILIZER', 'OTHER'])
+    readonly type: string;
 
     @ApiProperty()
     @IsString()

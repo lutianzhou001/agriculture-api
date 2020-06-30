@@ -7,18 +7,21 @@ import {
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
-import { GreenhouseFarmingDto } from './dto/greenhousefarming.dto';
+import { PatrolDto } from './dto/patrol.dto';
 import { PurchaseDto } from './dto/puchase.dto';
 import { PlanDto } from './dto/plan.dto';
-import { LendDto } from './dto/lend.dto';
-import { CropFarmingDto } from './dto/cropfarming.dto';
+import { RentDto } from './dto/rent.dto';
+import { CropDto } from './dto/crop.dto';
 import { BaseDto } from './dto/base.dto';
-import { LandDto } from './dto/land.dto';
+import { LandDto, GreenhouseDto } from './dto/land.dto';
 import { ToolDto } from './dto/tool.dto';
 import { EnterpriseDto } from './dto/enterprise.dto'
 import { PlantDto } from './dto/plant.dto';
+import { greenhouseDto } from './dto/greenhouse.dto';
+import { async } from 'rxjs/internal/scheduler/async';
+import { ProducerDto } from './dto/producer.dto';
 
-@Controller('agriculture')
+@Controller('farm')
 export class AgricultureController {
 
     @Get('enterprises')
@@ -27,7 +30,7 @@ export class AgricultureController {
         return new EnterpriseDto;
     }
 
-    @Get('enterprises/:DID')
+    @Get('enterprises/:did')
     @ApiOperation({ description: '获取某个企业信息' })
     async getEnterpriseByDID(@Param() params): Promise<EnterpriseDto> {
         return new EnterpriseDto;
@@ -39,7 +42,7 @@ export class AgricultureController {
         return new LandDto;;
     }
 
-    @Get('lands/:DID')
+    @Get('lands/:did')
     @ApiOperation({ description: '获取某个地块信息' })
     async getLandByDID(@Param() params): Promise<LandDto> {
         return new LandDto;
@@ -51,12 +54,29 @@ export class AgricultureController {
         return new BaseDto;
     }
 
-    @Get('bases/:DID')
+    @Get('bases/:did')
     @ApiOperation({ description: '获取某个基地信息' })
     async getBaseByDID(@Param() params): Promise<BaseDto> {
         return new BaseDto;
     }
 
+    @Post('bases/create')
+    @ApiOperation({ description: '创建一个基地' })
+    async createBase(@Body() baseDto: BaseDto): Promise<any> {
+        return 0;
+    }
+
+    @Post('greenhouse/create')
+    @ApiOperation({ description: '创建一个大棚' })
+    async createGreenhouse(@Body() greenhouseDto: GreenhouseDto): Promise<any> {
+        return 0;
+    }
+
+    @Post('producer/create')
+    @ApiOperation({ description: '创建一个农民' })
+    async createProducer(@Body() producerDto: ProducerDto): Promise<any> {
+        return 0;
+    }
 
     @Get('plants')
     @ApiOperation({ description: '获取所有种植物信息' })
@@ -64,7 +84,7 @@ export class AgricultureController {
         return new PlanDto;
     }
 
-    @Get('plants/:DID')
+    @Get('plants/:did')
     @ApiOperation({ description: '获取某个种植物信息' })
     async getPlantByDID(@Param() params): Promise<PlantDto> {
         return new PlantDto;
@@ -77,7 +97,7 @@ export class AgricultureController {
         return new ToolDto;
     }
 
-    @Get('tools/:DID')
+    @Get('tools/:did')
     @ApiOperation({ description: '获取某个农资信息' })
     async getToolByDID(@Param() params): Promise<ToolDto> {
         return new ToolDto;
@@ -85,25 +105,25 @@ export class AgricultureController {
 
     @Post('farming/crop')
     @ApiOperation({ description: '作物农事' })
-    async cropfarming(@Body() cropFarming: CropFarmingDto): Promise<any> {
+    async cropfarming(@Body() farmDto: CropDto): Promise<any> {
         return 0;
     }
 
-    @Post('farming/greenhouse')
-    @ApiOperation({ description: '大棚农事' })
-    async greenhousefarming(@Body() greenhouseFarmingDto: GreenhouseFarmingDto): Promise<any> {
+    @Post('farming/patrol')
+    @ApiOperation({ description: '大棚农事(巡棚)' })
+    async greenhousefarming(@Body() patrolDto: PatrolDto): Promise<any> {
         return 0;
     }
 
     @Post('tools/purchase')
-    @ApiOperation({ description: '采购' })
+    @ApiOperation({ description: '农资采购' })
     async purchase(@Body() purchaseDto: PurchaseDto): Promise<any> {
         return 0;
     }
 
     @Post('tools/lend')
-    @ApiOperation({ description: '租赁' })
-    async lend(@Body() LendDto: LendDto): Promise<any> {
+    @ApiOperation({ description: '农资租赁' })
+    async lend(@Body() rentDto: RentDto): Promise<any> {
         return 0;
     }
 

@@ -10,21 +10,17 @@ export class PurchaseDto {
 
     @ApiProperty()
     @IsString()
-    readonly baseDID: string;
+    readonly toolDid: string;
 
     @ApiProperty()
     @IsString()
-    readonly toolDID: string;
-
-    @ApiProperty()
-    @IsNumber()
-    @IsIn([1, 2, 3, 4, 5])
-    readonly recordType: number;
+    @IsIn(['STORE', 'USE', 'RETURN', 'LOSS', 'PURCHASE'])
+    readonly recordType: string;
 
     @ApiPropertyOptional()
     @IsNumber()
     @IsOptional()
-    @IsIn([1, 2, 3])
+    @IsIn(['READY', 'MONTHLY', 'OTHER'])
     readonly payType: number;
 
     @ApiPropertyOptional()
@@ -38,16 +34,16 @@ export class PurchaseDto {
     readonly amount: number;
 
     @ApiPropertyOptional()
-    @IsNumber()
-    @IsIn([0, 1])
+    @IsString()
     @IsOptional()
-    readonly isPaid: number;
+    @IsIn(['PAID', 'UNPAID'])
+    readonly isPaid: string;
 
     @ApiPropertyOptional()
-    @IsNumber()
-    @IsIn([0, 1])
+    @IsString()
     @IsOptional()
-    readonly isIn: number;
+    @IsIn(['STORED', 'UNSTORED'])
+    readonly stored: string;
 
     @ApiPropertyOptional()
     @IsOptional()

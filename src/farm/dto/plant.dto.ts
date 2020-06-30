@@ -6,7 +6,7 @@ export class PlantDto {
 
     @ApiProperty()
     @IsString()
-    readonly DID: string;
+    readonly did: string;
 
     @ApiProperty()
     @IsString()

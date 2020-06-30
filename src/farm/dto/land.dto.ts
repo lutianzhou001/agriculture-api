@@ -17,7 +17,6 @@ export class GreenhouseDto {
 
     @ApiProperty()
     @IsString()
-    readonly location: string
 
     @ApiProperty()
     @IsString()

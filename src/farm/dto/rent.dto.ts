@@ -1,7 +1,7 @@
 import { IsString, IsIn, IsNumber, IsDate, IsObject, IsOptional } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export class LendDto {
+export class RentDto {
 
     @ApiPropertyOptional()
     @IsString()

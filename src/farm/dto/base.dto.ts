@@ -3,6 +3,10 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class BaseDto {
 
+    @ApiPropertyOptional()
+    @IsString()
+    readonly hash: string;
+
     @ApiProperty()
     @IsString()
     readonly name: string;
@@ -31,6 +35,10 @@ export class BaseDto {
     @IsOptional()
     readonly altitude: number;
 
+    @ApiProperty()
+    @IsString()
+    readonly ownerDid: string;
+
     @ApiPropertyOptional()
     @IsString()
     @IsOptional()
@@ -39,7 +47,7 @@ export class BaseDto {
     @ApiPropertyOptional()
     @IsString()
     @IsOptional()
-    readonly ownerAddress: string;
+    readonly baseAddress: string;
 
     @ApiPropertyOptional()
     @IsString()
@@ -54,7 +62,7 @@ export class BaseDto {
     @ApiPropertyOptional()
     @IsString()
     @IsOptional()
-    readonly Id: string;
+    readonly identityCard: string;
 
 }
 
