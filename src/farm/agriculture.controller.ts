@@ -20,6 +20,7 @@ import { DeviceDto } from './dto/device.dto';
 import { DeviceFixDto } from './dto/device.fix.dto';
 import { DeviceMonitorDto } from './dto/device.monitor.dto';
 import { DeviceSwitchDto } from './dto/device.switch.dto';
+import { IResponse } from 'src/common/interface/response.interface';
 
 @Controller('farm')
 export class AgricultureController {
