@@ -14,7 +14,7 @@ export class DeviceSwitchDto {
     readonly deviceHash: string;
 
     @ApiPropertyOptional({ description: '大棚HASH' })
-    @IsString() i
+    @IsString()
     readonly greenhousehash: string;
 
     @ApiProperty({ description: '开启时间' })
