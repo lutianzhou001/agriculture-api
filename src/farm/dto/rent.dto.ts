@@ -1,12 +1,16 @@
 import { IsString, IsIn, IsNumber, IsDate, IsObject, IsOptional } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export class RentDto {
+export class UseDto {
 
     @ApiPropertyOptional()
     @IsString()
     @IsOptional()
     readonly hash: string;
+
+    @ApiProperty({ description: '领用农资' })
+    @IsString()
+    readonly toolDid: string;
 
     @ApiPropertyOptional({ description: '领用用户' })
     @IsString()

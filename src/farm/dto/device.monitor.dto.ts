@@ -14,7 +14,7 @@ export class DeviceMonitorDto {
 
     @ApiPropertyOptional({ description: '大棚HASH' })
     @IsString()
-    readonly greenhousehash: string;
+    readonly greenhouseHash: string;
 
     @ApiProperty({ description: '温度' })
     @IsNumber()

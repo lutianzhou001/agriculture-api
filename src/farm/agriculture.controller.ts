@@ -133,9 +133,9 @@ export class AgricultureController {
         return 0;
     }
 
-    @Post('tools/lend')
+    @Post('tools/rent')
     @ApiOperation({ description: '农资租赁' })
-    async lend(@Body() rentDto: RentDto): Promise<any> {
+    async rent(@Body() rentDto: RentDto): Promise<any> {
         return 0;
     }
 
