@@ -13,13 +13,15 @@ import { PlanDto } from './dto/plan.dto';
 import { RentDto } from './dto/rent.dto';
 import { CropDto } from './dto/crop.dto';
 import { BaseDto } from './dto/base.dto';
-import { LandDto, GreenhouseDto } from './dto/land.dto';
+import { LandDto } from './dto/land.dto';
 import { ToolDto } from './dto/tool.dto';
 import { EnterpriseDto } from './dto/enterprise.dto'
 import { PlantDto } from './dto/plant.dto';
-import { greenhouseDto } from './dto/greenhouse.dto';
+import { GreenhouseDto } from './dto/greenhouse.dto';
 import { async } from 'rxjs/internal/scheduler/async';
 import { ProducerDto } from './dto/producer.dto';
+import { DeviceDto } from './dto/device.dto';
+import { DeviceFixDto } from './dto/deviceFix.dto';
 
 @Controller('farm')
 export class AgricultureController {
@@ -80,8 +82,8 @@ export class AgricultureController {
 
     @Get('plants')
     @ApiOperation({ description: '获取所有种植物信息' })
-    async getPlants(): Promise<PlanDto> {
-        return new PlanDto;
+    async getPlants(): Promise<PlantDto> {
+        return new PlantDto;
     }
 
     @Get('plants/:did')
@@ -130,6 +132,18 @@ export class AgricultureController {
     @Post('plan')
     @ApiOperation({ description: '计划' })
     async plan(@Body() planDto: PlanDto): Promise<any> {
+        return 0;
+    }
+
+    @Post('device/create')
+    @ApiOperation({ description: '创建一个设备' })
+    async createDevice(@Body() deviceDto: DeviceDto): Promise<any> {
+        return 0;
+    }
+
+    @Post('device/fix')
+    @ApiOperation({ description: '维修一个设备' })
+    async fixDevice(@Body() deviceFixDto: DeviceFixDto): Promise<any> {
         return 0;
     }
 }

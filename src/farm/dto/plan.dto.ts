@@ -3,55 +3,55 @@ import { ApiProperty, ApiOperation, ApiPayloadTooLargeResponse, ApiPropertyOptio
 
 export class PlanDto {
 
-    @ApiProperty()
+    @ApiPropertyOptional({ description: '计划HASH' })
     @IsString()
     readonly hash: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '基地HASH' })
     @IsString()
     readonly baseHash: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '地块did' })
     @IsString()
     readonly landDid: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '大棚HASH' })
     @IsString()
     readonly greenhouseHash: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '作物did' })
     @IsString()
     readonly plantDid: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ description: '任务周期id' })
     @IsNumber()
     @IsOptional()
     readonly workGrowthId: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '任务名称' })
     @IsString()
     readonly workName: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ description: '任务简介' })
     @IsString()
     @IsOptional()
     readonly workDescription: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ description: '预计产量' })
     @IsString()
     @IsOptional()
     readonly productionExpection: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ description: '预计采收时间' })
     @IsString()
     @IsOptional()
     readonly harvestTime: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '种植开始时间' })
     @IsDate()
     readonly startTime: Date;
 
-    @ApiProperty()
+    @ApiProperty({ description: '种植结束时间' })
     @IsDate()
     readonly endTime: Date
 

@@ -1,35 +1,33 @@
 import { IsString, IsDate, IsNumber, IsObject } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-
-
 export class PatrolDto {
 
-    @ApiProperty()
+    @ApiPropertyOptional({ description: '巡棚HASH' })
     @IsString()
-    readonly: string;
+    readonly hash: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '农民HASH' })
     @IsString()
     readonly producerHash: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '农民名字' })
     @IsString()
     readonly producerName: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '描述' })
     @IsString()
     readonly description: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '农事HASH' })
     @IsString()
     readonly farmHash: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '农资HASH' })
     @IsString()
     readonly rentHash: string;
 
-    @ApiProperty()
+    @ApiProperty({ description: '计划HASH' })
     @IsString()
     readonly planHash: string;
 

@@ -3,30 +3,29 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class RentDto {
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ description: '领用HASH' })
     @IsString()
     @IsOptional()
     readonly hash: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ description: '领用用户' })
     @IsString()
     @IsOptional()
     readonly user: string;
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ description: '使用时间' })
     @IsDate()
     @IsOptional()
-    readonly userTime: Date;
+    readonly useTime: Date;
 
-    @ApiPropertyOptional()
-    @IsOptional()
-    @IsString()
-    readonly supplierName: string;
-
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ description: '备注' })
     @IsOptional()
     @IsString()
     readonly remark: string;
+
+    @ApiPropertyOptional({ description: '说明' })
+    @IsOptional()
+    readonly spec: string;
 
 }
 

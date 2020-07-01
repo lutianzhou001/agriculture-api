@@ -1,63 +1,27 @@
 import { IsString, IsIn, IsNumber, IsDate, IsObject } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
-
-export class GreenhouseDto {
-
-    @ApiProperty()
-    @IsString()
-    readonly id: string
-
-    @ApiProperty()
-    @IsString()
-    readonly name: string;
-
-    @ApiProperty()
-    @IsString()
-    readonly model: string
-
-    @ApiProperty()
-    @IsString()
-
-    @ApiProperty()
-    @IsString()
-    readonly centre: string;
-
-    @ApiProperty()
-    @IsString()
-    readonly area: string;
-
-    @ApiProperty()
-    @IsNumber()
-    @IsIn([1, 2])
-    readonly type: number;
-}
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class LandDto {
 
-    @ApiProperty()
+    @ApiProperty({ description: 'did标志' })
     @IsString()
-    readonly DID: string;
+    readonly did: string;
 
-    @ApiProperty()
+    @ApiPropertyOptional({ description: '地块名字' })
     @IsString()
     readonly name: string;
 
-    @ApiProperty()
+    @ApiPropertyOptional({ description: '空间信息' })
     @IsString()
     readonly location: string;
 
-    @ApiProperty()
+    @ApiPropertyOptional({ description: '警戒水位' })
     @IsString()
     readonly waringWaterLevel: string;
 
-    @ApiProperty()
-    @IsObject()
-    readonly greenhouse: GreenhouseDto[];
-
-    @ApiProperty()
-    @IsDate()
-    readonly ctime: Date;
-
+    @ApiPropertyOptional({ description: '面积' })
+    @IsString()
+    readonly area: string;
 }
 
 
