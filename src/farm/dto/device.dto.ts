@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class DeviceDto {
 
-    @ApiPropertyOptional({ description: '物联网设备HASH' })
+    @ApiPropertyOptional()
     @IsString()
     readonly hash: string
 

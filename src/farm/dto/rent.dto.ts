@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class RentDto {
 
-    @ApiPropertyOptional({ description: '领用HASH' })
+    @ApiPropertyOptional()
     @IsString()
     @IsOptional()
     readonly hash: string;

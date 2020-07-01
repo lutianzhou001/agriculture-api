@@ -2,10 +2,7 @@
 
 import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import {
-    ApiBearerAuth,
     ApiOperation,
-    ApiResponse,
-    ApiTags,
 } from '@nestjs/swagger';
 import { PatrolDto } from './dto/patrol.dto';
 import { PurchaseDto } from './dto/puchase.dto';
@@ -18,10 +15,11 @@ import { ToolDto } from './dto/tool.dto';
 import { EnterpriseDto } from './dto/enterprise.dto'
 import { PlantDto } from './dto/plant.dto';
 import { GreenhouseDto } from './dto/greenhouse.dto';
-import { async } from 'rxjs/internal/scheduler/async';
 import { ProducerDto } from './dto/producer.dto';
 import { DeviceDto } from './dto/device.dto';
-import { DeviceFixDto } from './dto/deviceFix.dto';
+import { DeviceFixDto } from './dto/device.fix.dto';
+import { DeviceMonitorDto } from './dto/device.monitor.dto';
+import { DeviceSwitchDto } from './dto/device.switch.dto';
 
 @Controller('farm')
 export class AgricultureController {
@@ -68,16 +66,28 @@ export class AgricultureController {
         return 0;
     }
 
-    @Post('greenhouse/create')
+    @Post('greenhouses/create')
     @ApiOperation({ description: '创建一个大棚' })
     async createGreenhouse(@Body() greenhouseDto: GreenhouseDto): Promise<any> {
         return 0;
     }
 
-    @Post('producer/create')
+    @Get('greenhouses/:hash')
+    @ApiOperation({ description: '获取一个大棚' })
+    async getGreenhouseByHash(@Param() params): Promise<GreenhouseDto> {
+        return new GreenhouseDto;
+    }
+
+    @Post('producers/create')
     @ApiOperation({ description: '创建一个农民' })
     async createProducer(@Body() producerDto: ProducerDto): Promise<any> {
         return 0;
+    }
+
+    @Get('producers/:hash')
+    @ApiOperation({ description: '获取一个农民' })
+    async getProducerByHash(@Body() producerDto: ProducerDto): Promise<ProducerDto> {
+        return new ProducerDto;
     }
 
     @Get('plants')
@@ -141,12 +151,32 @@ export class AgricultureController {
         return 0;
     }
 
+    @Get('device/:hash')
+    @ApiOperation({ description: '获取一个设备' })
+    async getDeviceByHash(@Param() params): Promise<ProducerDto> {
+        return new ProducerDto;
+    }
+
     @Post('device/fix')
     @ApiOperation({ description: '维修一个设备' })
     async fixDevice(@Body() deviceFixDto: DeviceFixDto): Promise<any> {
         return 0;
     }
+
+    @Post('device/monitor')
+    @ApiOperation({ description: '添加监控信息' })
+    async monitorDevice(@Body() deviceMonitorDto: DeviceMonitorDto): Promise<any> {
+        return 0;
+    }
+
+    @Post('device/switch')
+    @ApiOperation({ description: '添加开关信息' })
+    async switchDevice(@Body() deviceSwitchDto: DeviceSwitchDto): Promise<any> {
+        return 0
+    }
 }
+
+
 
 
 

@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class GreenhouseDto {
 
-    @ApiProperty({ description: '大棚hash' })
+    @ApiPropertyOptional()
     @IsString()
     readonly hash: string
 

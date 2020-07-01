@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class PatrolDto {
 
-    @ApiPropertyOptional({ description: '巡棚HASH' })
+    @ApiPropertyOptional()
     @IsString()
     readonly hash: string;
 

@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional, ApiOperation } from '@nestjs/swagger'
 
 export class PurchaseDto {
 
-    @ApiPropertyOptional({ description: '购买流水HASH' })
+    @ApiPropertyOptional()
     @IsString()
     @IsOptional()
     readonly hash: string

@@ -3,7 +3,7 @@ import { ApiProperty, ApiOperation, ApiPayloadTooLargeResponse, ApiPropertyOptio
 
 export class PlanDto {
 
-    @ApiPropertyOptional({ description: '计划HASH' })
+    @ApiPropertyOptional()
     @IsString()
     readonly hash: string;
 
