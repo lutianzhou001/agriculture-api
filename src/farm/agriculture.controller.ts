@@ -7,7 +7,7 @@ import {
 import { PatrolDto } from './dto/patrol.dto';
 import { PurchaseDto } from './dto/puchase.dto';
 import { PlanDto } from './dto/plan.dto';
-import { RentDto } from './dto/rent.dto';
+import { UseDto } from './dto/use.dto';
 import { CropDto } from './dto/crop.dto';
 import { BaseDto } from './dto/base.dto';
 import { LandDto } from './dto/land.dto';
@@ -133,9 +133,9 @@ export class AgricultureController {
         return 0;
     }
 
-    @Post('tools/rent')
-    @ApiOperation({ description: '农资租赁' })
-    async rent(@Body() rentDto: RentDto): Promise<any> {
+    @Post('tools/use')
+    @ApiOperation({ description: '农资使用' })
+    async use(@Body() useDto: UseDto): Promise<any> {
         return 0;
     }
 
