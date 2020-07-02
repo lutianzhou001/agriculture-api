@@ -6,7 +6,7 @@ export class PurchaseDto {
     @ApiPropertyOptional()
     @IsString()
     @IsOptional()
-    readonly hash: string
+    hash: string
 
     @ApiProperty({ description: '企业did' })
     @IsString()

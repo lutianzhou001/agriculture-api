@@ -7,10 +7,10 @@ export class Greenhouse extends Document {
     hash: string;
 
     @Prop()
-    greenhousesName: string;
+    greenhouseName: string;
 
     @Prop()
-    greenhousesModel: string;
+    greenhouseModel: string;
 
     @Prop()
     location: string;

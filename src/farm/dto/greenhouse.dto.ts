@@ -9,12 +9,12 @@ export class GreenhouseDto {
 
     @ApiProperty({ description: '大棚名称' })
     @IsString()
-    readonly greenhousesName: string;
+    readonly greenhouseName: string;
 
     @ApiPropertyOptional({ description: '大棚型号' })
     @IsString()
     @IsOptional()
-    readonly greenhousesModel: string
+    readonly greenhouseModel: string
 
     @ApiPropertyOptional({ description: '大棚空间数据' })
     @IsString()

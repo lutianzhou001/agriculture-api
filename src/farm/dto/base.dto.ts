@@ -5,7 +5,7 @@ export class BaseDto {
 
     @ApiPropertyOptional()
     @IsString()
-    readonly hash: string;
+    hash: string;
 
     @ApiProperty({ description: '基地名称' })
     @IsString()

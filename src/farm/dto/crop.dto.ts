@@ -4,7 +4,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 export class CropDto {
     @ApiPropertyOptional()
     @IsString()
-    readonly hash: string
+    hash: string
 
     @ApiProperty({ description: '大棚HASH' })
     @IsString()

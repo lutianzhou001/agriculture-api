@@ -65,7 +65,14 @@ export class AgricultureController {
     @Post('bases/create')
     @ApiOperation({ description: '创建一个基地' })
     async createBase(@Body() baseDto: BaseDto): Promise<any> {
-        return 0;
+        try {
+            var mock = await this.agriculture.createBase(baseDto)
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+        //return 0;
     }
 
     @ApiResponse({
@@ -82,8 +89,13 @@ export class AgricultureController {
     @Post('greenhouses/create')
     @ApiOperation({ description: '创建一个大棚' })
     async createGreenhouse(@Body() greenhouseDto: GreenhouseDto): Promise<any> {
-        var mock = await this.agriculture.createGreenhouse(greenhouseDto)
-        return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        try {
+            var mock = await this.agriculture.createGreenhouse(greenhouseDto)
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
     @Get('greenhouses/:hash')
@@ -107,9 +119,13 @@ export class AgricultureController {
     @ApiOperation({ description: '创建一个农民' })
     async createProducer(@Body() producerDto: ProducerDto): Promise<any> {
         //return await this.agriculture.createProducer(producerDto);
-        var mock = await this.agriculture.createProducer(producerDto)
-        return await new ResponseSuccess('COMMON.SUCCESS', mock);
-        //return 0;
+        try {
+            var mock = await this.agriculture.createProducer(producerDto)
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
     @Get('producers/:hash')
@@ -145,20 +161,38 @@ export class AgricultureController {
 
     @Post('farming/crop')
     @ApiOperation({ description: '作物农事' })
-    async cropfarming(@Body() farmDto: CropDto): Promise<any> {
-        return 0;
+    async cropfarming(@Body() cropDto: CropDto): Promise<any> {
+        try {
+            var mock = await this.agriculture.createCrop(cropDto)
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
     @Post('farming/patrol')
     @ApiOperation({ description: '大棚农事(巡棚)' })
     async greenhousefarming(@Body() patrolDto: PatrolDto): Promise<any> {
-        return 0;
+        try {
+            var mock = await this.agriculture.createPatrol(patrolDto)
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
     @Post('tools/purchase')
     @ApiOperation({ description: '农资采购' })
     async purchase(@Body() purchaseDto: PurchaseDto): Promise<any> {
-        return 0;
+        try {
+            var mock = await this.agriculture.createPurchase(purchaseDto)
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
     @Post('tools/use')

@@ -5,7 +5,7 @@ export class PatrolDto {
 
     @ApiPropertyOptional()
     @IsString()
-    readonly hash: string;
+    hash: string;
 
     @ApiProperty({ description: '农民HASH' })
     @IsString()
