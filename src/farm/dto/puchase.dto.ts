@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional, ApiOperation } from '@nestjs/swagger'
 
 export class PurchaseDto {
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ example: 'fa4a75595bbc998543ad2d3a5f22f5f598aca23f' })
     @IsString()
     @IsOptional()
     hash: string

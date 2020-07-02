@@ -3,7 +3,7 @@ import { ApiProperty, ApiOperation, ApiPayloadTooLargeResponse, ApiPropertyOptio
 
 export class PlanDto {
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ example: 'b056c51823b25b2b2d098969105ad6442d44b0e6' })
     @IsString()
     hash: string;
 

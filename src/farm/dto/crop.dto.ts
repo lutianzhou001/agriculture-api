@@ -2,7 +2,7 @@ import { IsString, IsDate, IsNumber, IsObject, IsIn, IsHash, IsOptional } from '
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CropDto {
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ example: '3ddd5931faeb80cb51e1827c1a470c59694f7768' })
     @IsString()
     hash: string
 

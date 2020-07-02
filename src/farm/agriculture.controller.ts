@@ -149,7 +149,7 @@ export class AgricultureController {
 
     @Get('producers/:hash')
     @ApiOperation({ description: '获取一个农民' })
-    async getProducerByHash(@Body() producerDto: ProducerDto): Promise<ProducerDto> {
+    async getProducerByHash(@Param() params): Promise<ProducerDto> {
         return new ProducerDto;
     }
 
@@ -178,6 +178,20 @@ export class AgricultureController {
         return new ToolDto;
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: '3ddd5931faeb80cb51e1827c1a470c59694f7768'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Post('farming/crop')
     @ApiOperation({ description: '作物农事' })
     async cropfarming(@Body() cropDto: CropDto): Promise<any> {
@@ -190,6 +204,20 @@ export class AgricultureController {
         }
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: 'b5277dcabbac360a5c0a61974af4181a5001b252'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Post('farming/patrol')
     @ApiOperation({ description: '大棚农事(巡棚)' })
     async greenhousefarming(@Body() patrolDto: PatrolDto): Promise<any> {
@@ -202,6 +230,20 @@ export class AgricultureController {
         }
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: 'fa4a75595bbc998543ad2d3a5f22f5f598aca23f'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Post('tools/purchase')
     @ApiOperation({ description: '农资采购' })
     async purchase(@Body() purchaseDto: PurchaseDto): Promise<any> {
@@ -226,6 +268,20 @@ export class AgricultureController {
         }
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: 'b056c51823b25b2b2d098969105ad6442d44b0e6'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Post('plan')
     @ApiOperation({ description: '计划' })
     async plan(@Body() planDto: PlanDto): Promise<any> {
