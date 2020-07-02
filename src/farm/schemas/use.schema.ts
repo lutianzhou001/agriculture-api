@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema()
-export class Base extends Document {
+export class Use extends Document {
     @Prop()
     hash: string;
 
@@ -22,4 +22,4 @@ export class Base extends Document {
     spec: string;
 }
 
-export const BaseSchema = SchemaFactory.createForClass(Base);
+export const UseSchema = SchemaFactory.createForClass(Use);

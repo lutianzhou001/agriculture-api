@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class BaseDto {
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ example: '13620d9221eddc951b455a719462a54e3de474d1' })
     @IsString()
     hash: string;
 

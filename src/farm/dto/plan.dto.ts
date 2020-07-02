@@ -5,7 +5,7 @@ export class PlanDto {
 
     @ApiPropertyOptional()
     @IsString()
-    readonly hash: string;
+    hash: string;
 
     @ApiProperty({ description: '基地HASH' })
     @IsString()

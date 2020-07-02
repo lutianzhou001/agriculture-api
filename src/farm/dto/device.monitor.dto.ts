@@ -6,7 +6,7 @@ export class DeviceMonitorDto {
     @ApiPropertyOptional()
     @IsString()
     @IsOptional()
-    readonly hash: string;
+    hash: string;
 
     @ApiProperty({ description: '设备HASH' })
     @IsString()

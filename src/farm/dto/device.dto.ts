@@ -5,7 +5,7 @@ export class DeviceDto {
 
     @ApiPropertyOptional()
     @IsString()
-    readonly hash: string
+    hash: string
 
     @ApiProperty({ description: '设备编号' })
     @IsString()

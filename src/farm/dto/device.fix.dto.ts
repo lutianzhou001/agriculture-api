@@ -5,7 +5,7 @@ export class DeviceFixDto {
 
     @ApiPropertyOptional()
     @IsString()
-    readonly hash: string
+    hash: string
 
     @ApiProperty({ description: '设备HASH' })
     @IsString()

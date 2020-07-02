@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class GreenhouseDto {
 
-    @ApiPropertyOptional({ default: 'ea092f15b204af21b2d950e25bdc601b9641148a' })
+    @ApiPropertyOptional({ default: '27e859182df6b49433b57ef4b0c34bdb3affd1e9', example: '27e859182df6b49433b57ef4b0c34bdb3affd1e9' })
     @IsString()
     hash: string
 

@@ -7,7 +7,7 @@ export class DeviceSwitchDto {
 
     @ApiProperty()
     @IsString()
-    readonly hash: string;
+    hash: string;
 
     @ApiProperty({ description: '设备HASH' })
     @IsString()

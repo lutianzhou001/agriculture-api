@@ -6,7 +6,7 @@ export class UseDto {
     @ApiPropertyOptional()
     @IsString()
     @IsOptional()
-    readonly hash: string;
+    hash: string;
 
     @ApiProperty({ description: '领用农资' })
     @IsString()
