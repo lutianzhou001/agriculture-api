@@ -21,9 +21,11 @@ import { DeviceFixDto } from './dto/device.fix.dto';
 import { DeviceMonitorDto } from './dto/device.monitor.dto';
 import { DeviceSwitchDto } from './dto/device.switch.dto';
 import { IResponse } from 'src/common/interface/response.interface';
+import { AgricultureService } from './agriculture.service';
 
 @Controller('farm')
 export class AgricultureController {
+    constructor(private readonly agriculture: AgricultureService) { }
 
     @Get('enterprises')
     @ApiOperation({ description: '获取所有企业信息' })
@@ -82,6 +84,7 @@ export class AgricultureController {
     @Post('producers/create')
     @ApiOperation({ description: '创建一个农民' })
     async createProducer(@Body() producerDto: ProducerDto): Promise<any> {
+        this.agriculture.createProducer(producerDto);
         return 0;
     }
 
