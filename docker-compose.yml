@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mongo:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    #image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - mynetwork
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    networks:
+      - mynetwork
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: password
+    depends_on:
+      - mongo
+
+networks:
+  mynetwork:
