@@ -3,18 +3,18 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class GreenhouseDto {
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ default: 'ea092f15b204af21b2d950e25bdc601b9641148a' })
     @IsString()
-    readonly hash: string
+    hash: string
 
     @ApiProperty({ description: '大棚名称' })
     @IsString()
-    readonly name: string;
+    readonly greenhousesName: string;
 
     @ApiPropertyOptional({ description: '大棚型号' })
     @IsString()
     @IsOptional()
-    readonly model: string
+    readonly greenhousesModel: string
 
     @ApiPropertyOptional({ description: '大棚空间数据' })
     @IsString()

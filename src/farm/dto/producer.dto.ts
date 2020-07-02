@@ -5,7 +5,7 @@ export class ProducerDto {
 
     @ApiPropertyOptional()
     @IsString()
-    readonly hash: string
+    hash: string
 
     @ApiProperty({ description: '农民姓名' })
     @IsString()

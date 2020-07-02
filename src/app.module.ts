@@ -10,7 +10,7 @@ const authSource = config.db.authSource ? ('?authSource=' + config.db.authSource
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://' + userString + config.db.host + ':' + (config.db.port || '27017') + '/' + config.db.database + authSource),
+    MongooseModule.forRoot('mongodb://' + userString + config.db.host + ':' + (config.db.port || '27017') + '/' + config.db.database + authSource, { useFindAndModify: false }),
     AgricultureModule],
   controllers: [AppController],
   providers: [AppService],

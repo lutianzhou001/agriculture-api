@@ -1,9 +1,8 @@
 
 
 import { Controller, Get, Param, Post, Body } from '@nestjs/common';
-import {
-    ApiOperation,
-} from '@nestjs/swagger';
+import { ApiOperation, ApiBody, ApiParam, ApiProduces, ApiResponse } from '@nestjs/swagger';
+import { ResponseSuccess, ResponseError } from '../common/dto/response.dto';
 import { PatrolDto } from './dto/patrol.dto';
 import { PurchaseDto } from './dto/puchase.dto';
 import { PlanDto } from './dto/plan.dto';
@@ -69,10 +68,22 @@ export class AgricultureController {
         return 0;
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: 'ea092f15b204af21b2d950e25bdc601b9641148a'
+            },
+        },
+    })
     @Post('greenhouses/create')
     @ApiOperation({ description: '创建一个大棚' })
     async createGreenhouse(@Body() greenhouseDto: GreenhouseDto): Promise<any> {
-        return 0;
+        var mock = await this.agriculture.createGreenhouse(greenhouseDto)
+        return await new ResponseSuccess('COMMON.SUCCESS', mock);
     }
 
     @Get('greenhouses/:hash')
@@ -81,11 +92,24 @@ export class AgricultureController {
         return new GreenhouseDto;
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: '0510458669b1db53f505c7ada0d6840012c5a6c2'
+            },
+        },
+    })
     @Post('producers/create')
     @ApiOperation({ description: '创建一个农民' })
     async createProducer(@Body() producerDto: ProducerDto): Promise<any> {
-        this.agriculture.createProducer(producerDto);
-        return 0;
+        //return await this.agriculture.createProducer(producerDto);
+        var mock = await this.agriculture.createProducer(producerDto)
+        return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        //return 0;
     }
 
     @Get('producers/:hash')
