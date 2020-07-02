@@ -70,7 +70,7 @@ export class AgricultureService {
         } else {
             var gh = await this.greenhouseModel.findOneAndUpdate({ hash: greenhouseDto.hash }, greenhouseDto)
             //var gh = await this.greenhouseModel.find({ hash: greenhouseDto.hash })
-            return gh
+            return gh.hash
         }
     }
 

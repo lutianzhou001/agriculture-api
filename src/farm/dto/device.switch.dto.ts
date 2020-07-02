@@ -5,7 +5,7 @@ import { exportDefaultDeclaration } from '@babel/types';
 
 export class DeviceSwitchDto {
 
-    @ApiProperty()
+    @ApiProperty({ example: '25a88f5ee29af852345030df9ffc2544e7e2d048' })
     @IsString()
     hash: string;
 

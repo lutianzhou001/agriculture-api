@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AgricultureService } from './agriculture.service';
 import { AgricultureController } from './agriculture.controller';
 import { MongooseModule } from '@nestjs/mongoose';
+import { Enterprise, EnterpriseSchema } from './schemas/enterprise.schema';
 import { Producer, ProducerSchema } from './schemas/producer.schema';
 import { Greenhouse, GreenhouseSchema } from './schemas/greenhouse.schema';
 import { Base, BaseSchema } from './schemas/base.schema';
@@ -18,6 +19,7 @@ import { DeviceSwitch, DeviceSwitchSchema } from './schemas/device.switch.schema
 @Module({
   imports: [
     MongooseModule.forFeature([
+      { name: Enterprise.name, schema: EnterpriseSchema },
       { name: Producer.name, schema: ProducerSchema },
       { name: Greenhouse.name, schema: GreenhouseSchema },
       { name: Base.name, schema: BaseSchema },

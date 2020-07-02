@@ -34,8 +34,10 @@ export class AgricultureController {
 
     @Get('enterprises/:did')
     @ApiOperation({ description: '获取某个企业信息' })
-    async getEnterpriseByDID(@Param() params): Promise<EnterpriseDto> {
-        return new EnterpriseDto;
+    async getEnterpriseByDID(@Param() params): Promise<IResponse> {
+        var test = new EnterpriseDto;
+        return new ResponseSuccess('COMMON.SUCCESS', test);
+        //return new EnterpriseDto;
     }
 
     @Get('lands')
@@ -256,6 +258,20 @@ export class AgricultureController {
         }
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: 'f8856048e8e5144b2e723844a711f6941d72cc24'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Post('tools/use')
     @ApiOperation({ description: '农资使用' })
     async use(@Body() useDto: UseDto): Promise<any> {
@@ -294,6 +310,20 @@ export class AgricultureController {
         }
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: 'c0f48ade959b61f3a0668e641fa5adac6f1b23fb'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Post('device/create')
     @ApiOperation({ description: '创建一个设备' })
     async createDevice(@Body() deviceDto: DeviceDto): Promise<any> {
@@ -312,6 +342,20 @@ export class AgricultureController {
         return new ProducerDto;
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: '83aaa9f118304bc63ef7ba3bc2b48bb732667e17'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Post('device/fix')
     @ApiOperation({ description: '维修一个设备' })
     async fixDevice(@Body() deviceFixDto: DeviceFixDto): Promise<any> {
@@ -324,6 +368,20 @@ export class AgricultureController {
         }
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: '11c71612a5d5a52b103ce5c0f1f6e666c3f74f89'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Post('device/monitor')
     @ApiOperation({ description: '添加监控信息' })
     async monitorDevice(@Body() deviceMonitorDto: DeviceMonitorDto): Promise<any> {
@@ -336,6 +394,20 @@ export class AgricultureController {
         }
     }
 
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: '25a88f5ee29af852345030df9ffc2544e7e2d048'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Post('device/switch')
     @ApiOperation({ description: '添加开关信息' })
     async switchDevice(@Body() deviceSwitchDto: DeviceSwitchDto): Promise<any> {

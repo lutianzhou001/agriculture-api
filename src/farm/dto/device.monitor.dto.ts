@@ -3,7 +3,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class DeviceMonitorDto {
 
-    @ApiPropertyOptional()
+    @ApiPropertyOptional({ example: '11c71612a5d5a52b103ce5c0f1f6e666c3f74f89' })
     @IsString()
     @IsOptional()
     hash: string;
