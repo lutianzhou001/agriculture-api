@@ -53,7 +53,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Get('enterprises')
-    @ApiOperation({ description: '获取所有企业信息' })
+    @ApiOperation({ description: '获取所有企业信息', summary: '获取所有企业信息' })
     async getEnterprises(): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findAllEnterprises();
@@ -91,7 +91,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Get('enterprises/:did')
-    @ApiOperation({ description: '获取某个企业信息' })
+    @ApiOperation({ description: '获取某个企业信息', summary: '获取某个企业信息' })
     async getEnterpriseByDID(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findEnterpriseByDID(params.did);
@@ -105,7 +105,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('lands')
-    @ApiOperation({ description: '获取地块信息' })
+    @ApiOperation({ description: '获取地块信息', summary: '获取地块信息' })
     async getLands(): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findAllLands();
@@ -117,7 +117,7 @@ export class AgricultureController {
     }
 
     @Get('lands/:did')
-    @ApiOperation({ description: '获取某个地块信息' })
+    @ApiOperation({ description: '获取某个地块信息', summary: '获取某个地块信息' })
     async getLandByDID(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findLandByDID(params.did);
@@ -143,7 +143,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('bases/create')
-    @ApiOperation({ description: '创建一个基地' })
+    @ApiOperation({ description: '创建一个基地', summary: '创建一个基地' })
     async createBase(@Body() baseDto: BaseDto): Promise<any> {
         try {
             var mock = await this.agriculture.createBase(baseDto);
@@ -199,7 +199,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Get('bases')
-    @ApiOperation({ description: '获取所有基地信息' })
+    @ApiOperation({ description: '获取所有基地信息', summary: '获取所有基地信息' })
     async getBases(): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findAllBases();
@@ -239,7 +239,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Get('bases/:hash')
-    @ApiOperation({ description: '获取某个基地信息' })
+    @ApiOperation({ description: '获取某个基地信息', summary: '获取某个基地信息' })
     async getBaseByHash(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.getBaseByHash(params.hash);
@@ -265,7 +265,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('greenhouses/create')
-    @ApiOperation({ description: '创建一个大棚' })
+    @ApiOperation({ description: '创建一个大棚', summary: '创建一个大棚' })
     async createGreenhouse(@Body() greenhouseDto: GreenhouseDto): Promise<any> {
         try {
             var mock = await this.agriculture.createGreenhouse(greenhouseDto)
@@ -279,7 +279,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('greenhouses')
-    @ApiOperation({ description: '获取大棚列表' })
+    @ApiOperation({ description: '获取大棚列表', summary: '获取大棚列表' })
     async findallGreenhouses(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findallGreenhouses();
@@ -294,7 +294,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('greenhouses/:hash')
-    @ApiOperation({ description: '获取一个大棚' })
+    @ApiOperation({ description: '获取一个大棚', summary: '获取一个大棚' })
     async getGreenhouseByHash(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findGreenhouseByHase(params.hash);
@@ -320,7 +320,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('fields/create')
-    @ApiOperation({ description: '创建一个田' })
+    @ApiOperation({ description: '创建一个田', summary: '创建一个田' })
     async createField(@Body() fieldDto: FieldDto): Promise<any> {
         try {
             var mock = await this.agriculture.createField(fieldDto)
@@ -334,7 +334,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('fields')
-    @ApiOperation({ description: '获取大棚列表' })
+    @ApiOperation({ description: '获取田的列表', summary: '获取田的列表' })
     async findallFields(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findallFields();
@@ -349,7 +349,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('fields/:hash')
-    @ApiOperation({ description: '获取一个大棚' })
+    @ApiOperation({ description: '获取一个田', summary: '获取一个田' })
     async getFieldByHash(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findFieldByHase(params.hash);
@@ -375,7 +375,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('producers/create')
-    @ApiOperation({ description: '创建一个农民' })
+    @ApiOperation({ description: '创建一个农民', summary: '创建一个农民' })
     async createProducer(@Body() producerDto: ProducerDto): Promise<any> {
         //return await this.agriculture.createProducer(producerDto);
         try {
@@ -390,7 +390,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('producers')
-    @ApiOperation({ description: '获取农民列表' })
+    @ApiOperation({ description: '获取农民列表', summary: '获取农民列表' })
     async findallProducers(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findallProducers();
@@ -405,7 +405,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('producers/:hash')
-    @ApiOperation({ description: '获取一个农民' })
+    @ApiOperation({ description: '获取一个农民', summary: '获取一个农民' })
     async getProducerByHash(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findProducerByHase(params.hash);
@@ -419,7 +419,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('plants')
-    @ApiOperation({ description: '获取所有种植物信息' })
+    @ApiOperation({ description: '获取所有种植物信息', summary: '获取所有种植物信息' })
     async getPlants(): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findAllPlants();
@@ -435,7 +435,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('plants/:did')
-    @ApiOperation({ description: '获取某个种植物信息' })
+    @ApiOperation({ description: '获取某个种植物信息', summary: '获取某个种植物信息' })
     async getPlantByDID(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findPlantByDID(params.did);
@@ -450,7 +450,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('tools')
-    @ApiOperation({ description: '获取所有农资信息' })
+    @ApiOperation({ description: '获取所有农资信息', summary: '获取所有农资信息' })
     async getTools(): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findAllTools();
@@ -465,7 +465,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('tools/:did')
-    @ApiOperation({ description: '获取某个农资信息' })
+    @ApiOperation({ description: '获取某个农资信息', summary: '获取某个农资信息' })
     async getToolByDID(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findToolByDID(params.did);
@@ -491,7 +491,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('farming/crop')
-    @ApiOperation({ description: '作物农事' })
+    @ApiOperation({ description: '作物农事', summary: '作物农事' })
     async cropfarming(@Body() cropDto: CropDto): Promise<any> {
         try {
             var mock = await this.agriculture.createCrop(cropDto)
@@ -517,7 +517,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('farming/patrol')
-    @ApiOperation({ description: '大棚农事(巡棚)' })
+    @ApiOperation({ description: '大棚农事(巡棚)', summary: '大棚农事(巡棚)' })
     async greenhousefarming(@Body() patrolDto: PatrolDto): Promise<any> {
         try {
             var mock = await this.agriculture.createPatrol(patrolDto)
@@ -543,7 +543,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('tools/purchase')
-    @ApiOperation({ description: '农资采购' })
+    @ApiOperation({ description: '农资采购', summary: '农资采购' })
     async purchase(@Body() purchaseDto: PurchaseDto): Promise<any> {
         try {
             var mock = await this.agriculture.createPurchase(purchaseDto)
@@ -569,7 +569,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('tools/use')
-    @ApiOperation({ description: '农资使用' })
+    @ApiOperation({ description: '农资使用', summary: '农资使用' })
     async use(@Body() useDto: UseDto): Promise<any> {
         try {
             var mock = await this.agriculture.createUse(useDto)
@@ -595,7 +595,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('plan')
-    @ApiOperation({ description: '计划' })
+    @ApiOperation({ description: '计划', summary: '计划' })
     async plan(@Body() planDto: PlanDto): Promise<any> {
         try {
             var mock = await this.agriculture.createPlan(planDto)
@@ -621,7 +621,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('devices/create')
-    @ApiOperation({ description: '创建一个设备' })
+    @ApiOperation({ description: '创建一个设备', summary: '创建一个设备' })
     async createDevice(@Body() deviceDto: DeviceDto): Promise<any> {
         try {
             var mock = await this.agriculture.createDevice(deviceDto)
@@ -635,7 +635,7 @@ export class AgricultureController {
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('devices')
-    @ApiOperation({ description: '获取设备列表' })
+    @ApiOperation({ description: '获取设备列表', summary: '获取设备列表' })
     async findallDevices(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findallDevices();
@@ -649,7 +649,7 @@ export class AgricultureController {
     @ApiParam({ name: 'hash', required: true, example: 'c0f48ade959b61f3a0668e641fa5adac6f1b23fb' })
     @ApiResponse({ status: 200 })
     @Get('devices/:hash')
-    @ApiOperation({ description: '获取一个设备' })
+    @ApiOperation({ description: '获取一个设备', summary: '获取一个设备' })
     async getDeviceByHash(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findDeviceByHash(params.hash);
@@ -675,7 +675,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('devices/fix')
-    @ApiOperation({ description: '维修一个设备' })
+    @ApiOperation({ description: '维修一个设备', summary: '维修一个设备' })
     async fixDevice(@Body() deviceFixDto: DeviceFixDto): Promise<any> {
         try {
             var mock = await this.agriculture.fixDevice(deviceFixDto)
@@ -701,7 +701,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('devices/monitor')
-    @ApiOperation({ description: '添加监控信息' })
+    @ApiOperation({ description: '添加监控信息', summary: '添加监控信息' })
     async monitorDevice(@Body() deviceMonitorDto: DeviceMonitorDto): Promise<any> {
         try {
             var mock = await this.agriculture.monitorDevice(deviceMonitorDto)
@@ -727,7 +727,7 @@ export class AgricultureController {
     })
     @ApiProduces('application/json; charset=utf-8')
     @Post('devices/switch')
-    @ApiOperation({ description: '添加开关信息' })
+    @ApiOperation({ description: '添加开关信息', summary: '添加开关信息' })
     async switchDevice(@Body() deviceSwitchDto: DeviceSwitchDto): Promise<any> {
         try {
             var mock = await this.agriculture.switchDevice(deviceSwitchDto)
