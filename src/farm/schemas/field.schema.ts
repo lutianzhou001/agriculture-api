@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema()
-export class Greenhouse extends Document {
+export class Field extends Document {
     @Prop()
     hash: string;
 
@@ -10,10 +10,10 @@ export class Greenhouse extends Document {
     baseHash: string
 
     @Prop()
-    greenhouseName: string;
+    fieldName: string;
 
     @Prop()
-    greenhouseModel: string;
+    fieldModel: string;
 
     @Prop()
     location: string;
@@ -28,4 +28,4 @@ export class Greenhouse extends Document {
     ctime: Date
 }
 
-export const GreenhouseSchema = SchemaFactory.createForClass(Greenhouse);
+export const FieldSchema = SchemaFactory.createForClass(Field);

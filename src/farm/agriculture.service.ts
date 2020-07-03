@@ -7,6 +7,7 @@ import { Plant } from './schemas/plant.schema';
 import { Tool } from './schemas/tool.schema';
 import { Producer } from './schemas/producer.schema';
 import { Greenhouse } from './schemas/greenhouse.schema';
+import { Field } from './schemas/field.schema';
 import { Base } from './schemas/base.schema';
 import { Crop } from './schemas/crop.schema';
 import { Patrol } from './schemas/patrol.schema';
@@ -19,6 +20,7 @@ import { DeviceMonitor } from './schemas/device.monitor.schema';
 import { DeviceSwitch } from './schemas/device.switch.schema';
 import { ProducerDto } from './dto/producer.dto';
 import { GreenhouseDto } from './dto/greenhouse.dto';
+import { FieldDto } from './dto/field.dto';
 import { BaseDto } from './dto/base.dto';
 import { CropDto } from './dto/crop.dto';
 import { PatrolDto } from './dto/patrol.dto';
@@ -40,6 +42,7 @@ export class AgricultureService {
         @InjectModel(Tool.name) private toolModel: Model<Tool>,
         @InjectModel(Producer.name) private producerModel: Model<Producer>,
         @InjectModel(Greenhouse.name) private greenhouseModel: Model<Greenhouse>,
+        @InjectModel(Field.name) private fieldModel: Model<Field>,
         @InjectModel(Base.name) private baseModel: Model<Base>,
         @InjectModel(Crop.name) private cropModel: Model<Crop>,
         @InjectModel(Patrol.name) private patrolModel: Model<Patrol>,
@@ -79,6 +82,20 @@ export class AgricultureService {
             var gh = await this.greenhouseModel.findOneAndUpdate({ hash: greenhouseDto.hash }, greenhouseDto)
             //var gh = await this.greenhouseModel.find({ hash: greenhouseDto.hash })
             return gh.hash
+        }
+    }
+
+    async createField(fieldDto: FieldDto) {
+        if (fieldDto.hash == null) {
+            fieldDto.hash = String(Math.floor((Math.random() * 10000000) + 1))
+            var genhash = hash(fieldDto)
+            fieldDto.hash = genhash
+            const createGreenhouse = new this.fieldModel(fieldDto);
+            await createGreenhouse.save()
+            return createGreenhouse.hash
+        } else {
+            var field = await this.fieldModel.findOneAndUpdate({ hash: fieldDto.hash }, fieldDto)
+            return field.hash
         }
     }
 
@@ -258,6 +275,14 @@ export class AgricultureService {
 
     async findGreenhouseByHase(hash) {
         return await this.greenhouseModel.findOne({ hash: hash })
+    }
+
+    async findallFields() {
+        return await this.fieldModel.find()
+    }
+
+    async findFieldByHase(hash) {
+        return await this.fieldModel.findOne({ hash: hash })
     }
 
     async findallProducers() {

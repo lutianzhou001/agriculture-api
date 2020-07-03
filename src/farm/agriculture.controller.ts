@@ -14,6 +14,7 @@ import { ToolDto } from './dto/tool.dto';
 import { EnterpriseDto } from './dto/enterprise.dto'
 import { PlantDto } from './dto/plant.dto';
 import { GreenhouseDto } from './dto/greenhouse.dto';
+import { FieldDto } from './dto/field.dto';
 import { ProducerDto } from './dto/producer.dto';
 import { DeviceDto } from './dto/device.dto';
 import { DeviceFixDto } from './dto/device.fix.dto';
@@ -297,6 +298,61 @@ export class AgricultureController {
     async getGreenhouseByHash(@Param() params): Promise<IResponse> {
         try {
             var mock = await this.agriculture.findGreenhouseByHase(params.hash);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: '0xc33b2F902E4700CBb53Ad9A86699c704D5CdCe25'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
+    @Post('fields/create')
+    @ApiOperation({ description: '创建一个田' })
+    async createField(@Body() fieldDto: FieldDto): Promise<any> {
+        try {
+            var mock = await this.agriculture.createField(fieldDto)
+            return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
+    @Get('fields')
+    @ApiOperation({ description: '获取大棚列表' })
+    async findallFields(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findallFields();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @ApiParam({ name: 'hash', required: true, example: '27e859182df6b49433b57ef4b0c34bdb3affd1e9' })
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
+    @Get('fields/:hash')
+    @ApiOperation({ description: '获取一个大棚' })
+    async getFieldByHash(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findFieldByHase(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {

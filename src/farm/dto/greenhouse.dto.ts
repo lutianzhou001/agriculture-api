@@ -34,12 +34,7 @@ export class GreenhouseDto {
     @IsOptional()
     readonly area: number;
 
-    @ApiProperty({ description: '大棚类型，枚举["GREENHOUSE","FIELD"]' })
-    @IsString()
-    @IsIn(['GREENHOUSE', 'FIELD'])
-    readonly type: string;
-
-    @ApiProperty({ description: '插入时间', example: '3/15/19 14:47' })
+    @ApiProperty({ description: '插入时间', example: '2019/3/15 14:47' })
     @IsDate()
     readonly ctime: Date
 

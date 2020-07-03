@@ -8,6 +8,7 @@ import { Plant, PlantSchema } from './schemas/plant.schema';
 import { Tool, ToolSchema } from './schemas/tool.schema';
 import { Producer, ProducerSchema } from './schemas/producer.schema';
 import { Greenhouse, GreenhouseSchema } from './schemas/greenhouse.schema';
+import { Field, FieldSchema } from './schemas/field.schema';
 import { Base, BaseSchema } from './schemas/base.schema';
 import { Crop, CropSchema } from './schemas/crop.schema';
 import { Patrol, PatrolSchema } from './schemas/patrol.schema';
@@ -28,6 +29,7 @@ import { DeviceSwitch, DeviceSwitchSchema } from './schemas/device.switch.schema
       { name: Tool.name, schema: ToolSchema },
       { name: Producer.name, schema: ProducerSchema },
       { name: Greenhouse.name, schema: GreenhouseSchema },
+      { name: Field.name, schema: FieldSchema },
       { name: Base.name, schema: BaseSchema },
       { name: Crop.name, schema: CropSchema },
       { name: Patrol.name, schema: PatrolSchema },
