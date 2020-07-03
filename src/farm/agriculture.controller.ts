@@ -591,6 +591,7 @@ export class AgricultureController {
     }
 
     @ApiParam({ name: 'hash', required: true, example: 'c0f48ade959b61f3a0668e641fa5adac6f1b23fb' })
+    @ApiResponse({ status: 200 })
     @Get('device/:hash')
     @ApiOperation({ description: '获取一个设备' })
     async getDeviceByHash(@Param() params): Promise<IResponse> {
