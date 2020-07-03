@@ -7,6 +7,9 @@ export class Greenhouse extends Document {
     hash: string;
 
     @Prop()
+    baseHash: string
+
+    @Prop()
     greenhouseName: string;
 
     @Prop()

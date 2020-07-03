@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Enterprise } from './schemas/enterprise.schema';
+import { Land } from './schemas/land.schema';
+import { Plant } from './schemas/plant.schema';
+import { Tool } from './schemas/tool.schema';
 import { Producer } from './schemas/producer.schema';
 import { Greenhouse } from './schemas/greenhouse.schema';
 import { Base } from './schemas/base.schema';
@@ -30,6 +34,10 @@ const hash = require('object-hash');
 @Injectable()
 export class AgricultureService {
     constructor(
+        @InjectModel(Enterprise.name) private enterpriseModel: Model<Producer>,
+        @InjectModel(Land.name) private landModel: Model<Land>,
+        @InjectModel(Plant.name) private plantModel: Model<Plant>,
+        @InjectModel(Tool.name) private toolModel: Model<Tool>,
         @InjectModel(Producer.name) private producerModel: Model<Producer>,
         @InjectModel(Greenhouse.name) private greenhouseModel: Model<Greenhouse>,
         @InjectModel(Base.name) private baseModel: Model<Base>,
@@ -218,5 +226,57 @@ export class AgricultureService {
             var deviceSwitchs = await this.deviceSwitchModel.findOneAndUpdate({ hash: deviceSwitchDto.hash }, deviceSwitchDto)
             return deviceSwitchs.hash
         }
+    }
+
+    async getBaseByHash(hash) {
+        return await this.baseModel.findOne({ hash: hash })
+    }
+
+    async findAllBases() {
+        return await this.baseModel.find()
+    }
+
+    async findAllEnterprises() {
+        return await this.enterpriseModel.find()
+    }
+
+    async findEnterpriseByDID(did) {
+        return await this.enterpriseModel.findOne({ did: did })
+    }
+
+    async findAllLands() {
+        return await this.landModel.find()
+    }
+
+    async findLandByDID(did) {
+        return await this.landModel.findOne({ did: did })
+    }
+
+    async findallGreenhouses() {
+        return await this.greenhouseModel.find()
+    }
+
+    async findGreenhouseByHase(hash) {
+        return await this.greenhouseModel.findOne({ hash: hash })
+    }
+
+    async findProducerByHase(hash) {
+        return await this.producerModel.findOne({ hash: hash })
+    }
+
+    async findAllPlants() {
+        return await this.plantModel.find()
+    }
+
+    async findPlantByDID(did) {
+        return await this.plantModel.findOne({ did: did })
+    }
+
+    async findAllTools() {
+        return await this.toolModel.find()
+    }
+
+    async findToolByDID(did) {
+        return await this.toolModel.findOne({ did: did })
     }
 }

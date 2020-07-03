@@ -3,11 +3,15 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class GreenhouseDto {
 
-    @ApiPropertyOptional({ default: '27e859182df6b49433b57ef4b0c34bdb3affd1e9', example: '27e859182df6b49433b57ef4b0c34bdb3affd1e9' })
+    @ApiPropertyOptional({ example: '0xc33b2F902E4700CBb53Ad9A86699c704D5CdCe25' })
     @IsString()
     hash: string
 
-    @ApiProperty({ description: '大棚名称' })
+    @ApiProperty({ description: '基地hash', example: '54' })
+    @IsString()
+    baseHash: string
+
+    @ApiProperty({ description: '大棚名称', example: '3#棚' })
     @IsString()
     readonly greenhouseName: string;
 
@@ -21,11 +25,11 @@ export class GreenhouseDto {
     @IsOptional()
     readonly location: string
 
-    @ApiPropertyOptional({ description: '大棚中心点' })
+    @ApiPropertyOptional({ description: '大棚中心点', example: '121.14854 30.76225' })
     @IsString()
     readonly centre: string;
 
-    @ApiPropertyOptional({ description: '大棚面积（亩）' })
+    @ApiPropertyOptional({ description: '大棚面积（亩）', example: 3 })
     @IsNumber()
     @IsOptional()
     readonly area: number;
@@ -35,7 +39,7 @@ export class GreenhouseDto {
     @IsIn(['GREENHOUSE', 'FIELD'])
     readonly type: string;
 
-    @ApiProperty({ description: '插入时间' })
+    @ApiProperty({ description: '插入时间', example: '3/15/19 14:47' })
     @IsDate()
     readonly ctime: Date
 

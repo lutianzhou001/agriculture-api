@@ -26,42 +26,201 @@ import { AgricultureService } from './agriculture.service';
 export class AgricultureController {
     constructor(private readonly agriculture: AgricultureService) { }
 
+    @ApiResponse({
+        status: 200,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: [{
+                    plants: ['小番茄，生菜，甜瓜，叶用红薯，空心菜，水果玉米'],
+                    '_id': '5efdc68138439bcb8b72f640',
+                    name: '浙江绿迹农业科技有限公司',
+                    creditCode: '91330482MA2BCQ218W',
+                    address: '平湖市广陈镇广中南路30号215室',
+                    owner: '余魁',
+                    ownerIdentity: '342824195806060027',
+                    contact: '余魁',
+                    phone: '13867457085',
+                    baseAddress: '平湖广陈镇',
+                    plantingArea: '120',
+                    did: '0xb76C665C62f9b3f24d447861175de1794d0e0397'
+                }]
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('enterprises')
     @ApiOperation({ description: '获取所有企业信息' })
-    async getEnterprises(): Promise<EnterpriseDto> {
-        return new EnterpriseDto;
+    async getEnterprises(): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findAllEnterprises();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
+    @ApiParam({ name: 'did', required: true, example: '0xb76C665C62f9b3f24d447861175de1794d0e0397' })
+    @ApiResponse({
+        status: 200,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    plants: ['小番茄，生菜，甜瓜，叶用红薯，空心菜，水果玉米'],
+                    '_id': '5efdc68138439bcb8b72f640',
+                    name: '浙江绿迹农业科技有限公司',
+                    creditCode: '91330482MA2BCQ218W',
+                    address: '平湖市广陈镇广中南路30号215室',
+                    owner: '余魁',
+                    ownerIdentity: '342824195806060027',
+                    contact: '余魁',
+                    phone: '13867457085',
+                    baseAddress: '平湖广陈镇',
+                    plantingArea: '120',
+                    did: '0xb76C665C62f9b3f24d447861175de1794d0e0397'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('enterprises/:did')
     @ApiOperation({ description: '获取某个企业信息' })
     async getEnterpriseByDID(@Param() params): Promise<IResponse> {
-        var test = new EnterpriseDto;
-        return new ResponseSuccess('COMMON.SUCCESS', test);
-        //return new EnterpriseDto;
+        try {
+            var mock = await this.agriculture.findEnterpriseByDID(params.did);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        };
     }
 
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('lands')
     @ApiOperation({ description: '获取地块信息' })
-    async getGreenhouses(): Promise<LandDto> {
-        return new LandDto;;
+    async getLands(): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findAllLands();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        };
     }
 
     @Get('lands/:did')
     @ApiOperation({ description: '获取某个地块信息' })
-    async getLandByDID(@Param() params): Promise<LandDto> {
-        return new LandDto;
+    async getLandByDID(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findLandByDID(params.did);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        };
     }
 
+    @ApiResponse({
+        status: 200,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: [{
+                    '_id': '5efd92964fa5e561154e3367',
+                    name: '',
+                    location: '',
+                    centre: '',
+                    area: '',
+                    altitude: 0,
+                    ownerDid: '',
+                    ownerAddress: '',
+                    ownerName: '',
+                    baseAddress: '',
+                    contact: '',
+                    phone: '',
+                    identityCard: '',
+                    hash: '13620d9221eddc951b455a719462a54e3de474d1',
+                    '__v': 0
+                }, {
+                    '_id': '5efdc601f6edba51257d0c25',
+                    name: 'stringss',
+                    location: 'ssss',
+                    centre: 'string',
+                    area: 'string',
+                    altitude: 0,
+                    ownerDid: 'string',
+                    ownerAddress: 'string',
+                    ownerName: 'string',
+                    baseAddress: 'string',
+                    contact: 'string',
+                    phone: 'string',
+                    identityCard: 'string',
+                    hash: 'b28605c3d25fb3ccab1f66edbe7469b6ed3dceb7',
+                    '__v': 0
+                }]
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('bases')
     @ApiOperation({ description: '获取所有基地信息' })
-    async getBases(): Promise<BaseDto> {
-        return new BaseDto;
+    async getBases(): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findAllBases();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
-    @Get('bases/:did')
+    @ApiResponse({
+        status: 200,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    '_id': '5efd92964fa5e561154e3367',
+                    name: '',
+                    location: '',
+                    centre: '',
+                    area: '',
+                    altitude: 0,
+                    ownerDid: '',
+                    ownerAddress: '',
+                    ownerName: '',
+                    baseAddress: '',
+                    contact: '',
+                    phone: '',
+                    identityCard: '',
+                    hash: '13620d9221eddc951b455a719462a54e3de474d1',
+                    '__v': 0
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
+    @Get('bases/:hash')
     @ApiOperation({ description: '获取某个基地信息' })
-    async getBaseByDID(@Param() params): Promise<BaseDto> {
-        return new BaseDto;
+    async getBaseByHash(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.getBaseByHash(params.hash);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
     @ApiResponse({
@@ -82,7 +241,7 @@ export class AgricultureController {
     @ApiOperation({ description: '创建一个基地' })
     async createBase(@Body() baseDto: BaseDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createBase(baseDto)
+            var mock = await this.agriculture.createBase(baseDto);
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -98,7 +257,7 @@ export class AgricultureController {
                 success: true,
                 message: 'COMMON.SUCCESS',
                 data: {
-                    hash: '27e859182df6b49433b57ef4b0c34bdb3affd1e9'
+                    hash: '0xc33b2F902E4700CBb53Ad9A86699c704D5CdCe25'
                 }
             }
         },
@@ -116,10 +275,33 @@ export class AgricultureController {
         }
     }
 
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
+    @Get('greenhouses')
+    @ApiOperation({ description: '获取大棚列表' })
+    async findallGreenhouses(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findallGreenhouses();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @ApiParam({ name: 'hash', required: true, example: '27e859182df6b49433b57ef4b0c34bdb3affd1e9' })
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('greenhouses/:hash')
     @ApiOperation({ description: '获取一个大棚' })
-    async getGreenhouseByHash(@Param() params): Promise<GreenhouseDto> {
-        return new GreenhouseDto;
+    async getGreenhouseByHash(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findGreenhouseByHase(params.hash);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
     @ApiResponse({
@@ -149,35 +331,79 @@ export class AgricultureController {
         }
     }
 
+    @ApiParam({ name: 'hash', required: true, example: 'bd39b75e637cd50a21c649a57e730ea406096607' })
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('producers/:hash')
     @ApiOperation({ description: '获取一个农民' })
-    async getProducerByHash(@Param() params): Promise<ProducerDto> {
-        return new ProducerDto;
+    async getProducerByHash(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findProducerByHase(params.hash);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('plants')
     @ApiOperation({ description: '获取所有种植物信息' })
-    async getPlants(): Promise<PlantDto> {
-        return new PlantDto;
+    async getPlants(): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findAllPlants();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
+
+    @ApiParam({ name: 'did', required: true, example: '0xb365C1825D46e280191EFcFD93Ca3ABEcB6cD601' })
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('plants/:did')
     @ApiOperation({ description: '获取某个种植物信息' })
-    async getPlantByDID(@Param() params): Promise<PlantDto> {
-        return new PlantDto;
+    async getPlantByDID(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findPlantByDID(params.did);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
 
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('tools')
     @ApiOperation({ description: '获取所有农资信息' })
-    async getTools(): Promise<ToolDto> {
-        return new ToolDto;
+    async getTools(): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findAllTools();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
+    @ApiParam({ name: 'did', required: true, example: '0x85fB5FbA92f1e147C984cF03ADA0d441870cf5cf' })
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
     @Get('tools/:did')
     @ApiOperation({ description: '获取某个农资信息' })
-    async getToolByDID(@Param() params): Promise<ToolDto> {
-        return new ToolDto;
+    async getToolByDID(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findToolByDID(params.did);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
     @ApiResponse({

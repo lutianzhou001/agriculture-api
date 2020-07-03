@@ -3,6 +3,9 @@ import { AgricultureService } from './agriculture.service';
 import { AgricultureController } from './agriculture.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Enterprise, EnterpriseSchema } from './schemas/enterprise.schema';
+import { Land, LandSchema } from './schemas/land.schema';
+import { Plant, PlantSchema } from './schemas/plant.schema';
+import { Tool, ToolSchema } from './schemas/tool.schema';
 import { Producer, ProducerSchema } from './schemas/producer.schema';
 import { Greenhouse, GreenhouseSchema } from './schemas/greenhouse.schema';
 import { Base, BaseSchema } from './schemas/base.schema';
@@ -20,6 +23,9 @@ import { DeviceSwitch, DeviceSwitchSchema } from './schemas/device.switch.schema
   imports: [
     MongooseModule.forFeature([
       { name: Enterprise.name, schema: EnterpriseSchema },
+      { name: Land.name, schema: LandSchema },
+      { name: Plant.name, schema: PlantSchema },
+      { name: Tool.name, schema: ToolSchema },
       { name: Producer.name, schema: ProducerSchema },
       { name: Greenhouse.name, schema: GreenhouseSchema },
       { name: Base.name, schema: BaseSchema },
