@@ -260,6 +260,10 @@ export class AgricultureService {
         return await this.greenhouseModel.findOne({ hash: hash })
     }
 
+    async findallProducers() {
+        return await this.producerModel.find()
+    }
+
     async findProducerByHase(hash) {
         return await this.producerModel.findOne({ hash: hash })
     }
@@ -278,5 +282,13 @@ export class AgricultureService {
 
     async findToolByDID(did) {
         return await this.toolModel.findOne({ did: did })
+    }
+
+    async findallDevices() {
+        return await this.deviceModel.find()
+    }
+
+    async findDeviceByHash(hash) {
+        return await this.deviceModel.findOne({ hash: hash })
     }
 }

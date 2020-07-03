@@ -128,6 +128,32 @@ export class AgricultureController {
     }
 
     @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: '13620d9221eddc951b455a719462a54e3de474d1'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
+    @Post('bases/create')
+    @ApiOperation({ description: '创建一个基地' })
+    async createBase(@Body() baseDto: BaseDto): Promise<any> {
+        try {
+            var mock = await this.agriculture.createBase(baseDto);
+            return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @ApiResponse({
         status: 200,
         schema: {
             example:
@@ -231,32 +257,6 @@ export class AgricultureController {
                 success: true,
                 message: 'COMMON.SUCCESS',
                 data: {
-                    hash: '13620d9221eddc951b455a719462a54e3de474d1'
-                }
-            }
-        },
-    })
-    @ApiProduces('application/json; charset=utf-8')
-    @Post('bases/create')
-    @ApiOperation({ description: '创建一个基地' })
-    async createBase(@Body() baseDto: BaseDto): Promise<any> {
-        try {
-            var mock = await this.agriculture.createBase(baseDto);
-            return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
-        }
-        catch (error) {
-            return new ResponseError('COMMON.ERROR', error);
-        }
-    }
-
-    @ApiResponse({
-        status: 201,
-        schema: {
-            example:
-            {
-                success: true,
-                message: 'COMMON.SUCCESS',
-                data: {
                     hash: '0xc33b2F902E4700CBb53Ad9A86699c704D5CdCe25'
                 }
             }
@@ -325,6 +325,20 @@ export class AgricultureController {
         try {
             var mock = await this.agriculture.createProducer(producerDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
+    @Get('producers')
+    @ApiOperation({ description: '获取农民列表' })
+    async findallProducers(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findallProducers();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
             return new ResponseError('COMMON.ERROR', error);
@@ -562,10 +576,31 @@ export class AgricultureController {
         }
     }
 
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
+    @Get('device')
+    @ApiOperation({ description: '获取设备列表' })
+    async findallDevices(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findallDevices();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @ApiParam({ name: 'hash', required: true, example: 'c0f48ade959b61f3a0668e641fa5adac6f1b23fb' })
     @Get('device/:hash')
     @ApiOperation({ description: '获取一个设备' })
-    async getDeviceByHash(@Param() params): Promise<ProducerDto> {
-        return new ProducerDto;
+    async getDeviceByHash(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findDeviceByHash(params.hash);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
     }
 
     @ApiResponse({
