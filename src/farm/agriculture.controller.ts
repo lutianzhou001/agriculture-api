@@ -564,7 +564,7 @@ export class AgricultureController {
         },
     })
     @ApiProduces('application/json; charset=utf-8')
-    @Post('device/create')
+    @Post('devices/create')
     @ApiOperation({ description: '创建一个设备' })
     async createDevice(@Body() deviceDto: DeviceDto): Promise<any> {
         try {
@@ -578,7 +578,7 @@ export class AgricultureController {
 
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
-    @Get('device')
+    @Get('devices')
     @ApiOperation({ description: '获取设备列表' })
     async findallDevices(@Param() params): Promise<IResponse> {
         try {
@@ -592,7 +592,7 @@ export class AgricultureController {
 
     @ApiParam({ name: 'hash', required: true, example: 'c0f48ade959b61f3a0668e641fa5adac6f1b23fb' })
     @ApiResponse({ status: 200 })
-    @Get('device/:hash')
+    @Get('devices/:hash')
     @ApiOperation({ description: '获取一个设备' })
     async getDeviceByHash(@Param() params): Promise<IResponse> {
         try {
@@ -618,7 +618,7 @@ export class AgricultureController {
         },
     })
     @ApiProduces('application/json; charset=utf-8')
-    @Post('device/fix')
+    @Post('devices/fix')
     @ApiOperation({ description: '维修一个设备' })
     async fixDevice(@Body() deviceFixDto: DeviceFixDto): Promise<any> {
         try {
@@ -644,7 +644,7 @@ export class AgricultureController {
         },
     })
     @ApiProduces('application/json; charset=utf-8')
-    @Post('device/monitor')
+    @Post('devices/monitor')
     @ApiOperation({ description: '添加监控信息' })
     async monitorDevice(@Body() deviceMonitorDto: DeviceMonitorDto): Promise<any> {
         try {
@@ -670,7 +670,7 @@ export class AgricultureController {
         },
     })
     @ApiProduces('application/json; charset=utf-8')
-    @Post('device/switch')
+    @Post('devices/switch')
     @ApiOperation({ description: '添加开关信息' })
     async switchDevice(@Body() deviceSwitchDto: DeviceSwitchDto): Promise<any> {
         try {
