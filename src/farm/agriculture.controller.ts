@@ -345,14 +345,14 @@ export class AgricultureController {
         }
     }
 
-    @ApiParam({ name: 'hash', required: true, example: '27e859182df6b49433b57ef4b0c34bdb3affd1e9' })
+    @ApiParam({ name: 'hash', required: true, example: 'ee2c846ff06ea05751dfc8eb118953790a871cda' })
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('fields/:hash')
     @ApiOperation({ description: '获取一个田', summary: '获取一个田' })
     async getFieldByHash(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findFieldByHase(params.hash);
+            var mock = await this.agriculture.findFieldByHash(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -594,7 +594,7 @@ export class AgricultureController {
         },
     })
     @ApiProduces('application/json; charset=utf-8')
-    @Post('plan')
+    @Post('plans')
     @ApiOperation({ description: '计划', summary: '计划' })
     async plan(@Body() planDto: PlanDto): Promise<any> {
         try {

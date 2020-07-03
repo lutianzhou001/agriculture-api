@@ -7,14 +7,14 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const options = new DocumentBuilder()
-  .setTitle('hudex-backend')
-  .setDescription('This is a API description')
-  .setVersion('2.0')
-  .addTag('exchage')
-  .build()
+    .setTitle('agriculture-api')
+    .setDescription('This is a API description')
+    .setVersion('1.0')
+    .addTag('')
+    .build()
 
-  const document = SwaggerModule.createDocument(app,options);
-  SwaggerModule.setup('api',app,document);
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);
 
   await app.listen(3000);
 

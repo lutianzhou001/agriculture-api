@@ -281,7 +281,7 @@ export class AgricultureService {
         return await this.fieldModel.find()
     }
 
-    async findFieldByHase(hash) {
+    async findFieldByHash(hash) {
         return await this.fieldModel.findOne({ hash: hash })
     }
 
