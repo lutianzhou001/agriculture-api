@@ -1,8 +1,8 @@
-import { IsString, IsDate, IsNumber, IsObject, IsIn, IsHash, IsOptional } from 'class-validator';
+import { IsString, IsDate, IsNumber, IsObject, IsIn, IsHash, IsOptional, ValidateNested } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CropDto {
-    @ApiPropertyOptional({ example: '3ddd5931faeb80cb51e1827c1a470c59694f7768' })
+    @ApiPropertyOptional({ example: 'c8a27edfeaf934b469eb14a8bcc5a9d23f38d0a5' })
     @IsString()
     hash: string
 
@@ -22,9 +22,9 @@ export class CropDto {
     @IsString()
     readonly plantDid: string;
 
-    @ApiProperty({ description: '工作HASH' })
+    @ApiProperty({ description: '计划HASH' })
     @IsString()
-    readonly workHash: string;
+    readonly planHash: string;
 
     @ApiProperty({ description: '农民名字' })
     @IsString()
@@ -43,17 +43,11 @@ export class CropDto {
     @IsIn(['UNDERESTIMATED', 'PERFECT', 'GOOD', 'FAILED'])
     readonly status: string
 
-    @ApiProperty({ description: '农资did' })
-    @IsString()
-    readonly toolDid: string;
-
-    @ApiProperty({ description: '农资名称' })
-    @IsString()
-    readonly toolName: string;
-
-    @ApiProperty({ description: '农资数量' })
-    @IsNumber()
-    readonly toolAmount: number;
+    //@ValidateNested({ each: true })
+    //@IsNotEmpty()
+    @ValidateNested({ each: true })
+    @ApiProperty({ description: '农资' })
+    readonly tool: Array<ToolsDto>;
 
     @ApiProperty({ description: '流量' })
     @IsString()
@@ -67,14 +61,39 @@ export class CropDto {
     @IsDate()
     readonly endTime: Date;
 
+    @ApiProperty({ description: '农事时间' })
+    @IsDate()
+    readonly cropTime: Date;
+
     @ApiProperty({ description: '水量' })
     @IsString()
     readonly waterAmount: string;
 
-    @ApiProperty({ description: '水量状态' })
+    @ApiPropertyOptional({ description: '视频路径' })
     @IsString()
-    @IsIn(['UNFINISHED', 'COMPLETED'])
-    readonly waterStatus: string;
+    @IsOptional()
+    readonly videoUrl: string;
 
+    @ApiPropertyOptional({ description: '图片路径' })
+    @IsString()
+    @IsOptional()
+    readonly picUrl: string;
+
+    @ApiProperty({ description: '备注' })
+    @IsString()
+    readonly remark: string;
 }
 
+export class ToolsDto {
+    @ApiProperty({ description: '农资did' })
+    @IsString()
+    readonly toolDid: string;
+
+    @ApiProperty({ description: '农资名称' })
+    @IsString()
+    readonly toolName: string;
+
+    @ApiProperty({ description: '农资数量' })
+    @IsNumber()
+    readonly toolAmount: number;
+}

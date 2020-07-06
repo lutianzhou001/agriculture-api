@@ -1,6 +1,30 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
+/*@Schema()
+class Tools extends Document {
+    @Prop()
+    toolDid: string;
+
+    @Prop()
+    toolName: string;
+
+    @Prop()
+    toolAmount: number;
+
+            toolDid: {
+            valid: string,
+        },
+        toolName: {
+            valid: string,
+        },
+        toolAmount: {
+            valid: number,
+        }
+}
+
+
+var tool = new Tools*/
 @Schema()
 export class Crop extends Document {
     @Prop()
@@ -19,7 +43,7 @@ export class Crop extends Document {
     plantDid: string;
 
     @Prop()
-    workHash: string;
+    planHash: string;
 
     @Prop()
     producerName: string;
@@ -43,6 +67,15 @@ export class Crop extends Document {
     toolAmount: number;
 
     @Prop()
+    tool: {
+        toolDid: string;
+
+        toolName: string;
+
+        toolAmount: number;
+    }[];
+
+    @Prop()
     traffic: string;
 
     @Prop()
@@ -52,10 +85,19 @@ export class Crop extends Document {
     endTime: Date;
 
     @Prop()
+    cropTime: Date;
+
+    @Prop()
     waterAmount: string;
 
     @Prop()
-    waterStatus: string
+    videoUrl: string;
+
+    @Prop()
+    picUrl: string;
+
+    @Prop()
+    remark: string;
 }
 
 export const CropSchema = SchemaFactory.createForClass(Crop);

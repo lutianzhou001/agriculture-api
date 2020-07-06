@@ -7,13 +7,10 @@ export class Purchase extends Document {
     hash: string;
 
     @Prop()
-    enterpriseDid: string;
+    baseHash: string;
 
     @Prop()
     toolDid: string;
-
-    @Prop()
-    supplierId: string;
 
     @Prop()
     recordType: string;
@@ -28,16 +25,25 @@ export class Purchase extends Document {
     amount: number;
 
     @Prop()
-    isPaid: string;
+    isPaid: boolean;
 
     @Prop()
-    stored: string;
+    stored: boolean;
 
     @Prop()
     standard: string;
 
     @Prop()
+    agriculturalStoreName: string;
+
+    @Prop()
     supplierName: string;
+
+    @Prop()
+    purchaseTime: Date;
+
+    @Prop()
+    picUrl: string;
 }
 
 export const PurchaseSchema = SchemaFactory.createForClass(Purchase);

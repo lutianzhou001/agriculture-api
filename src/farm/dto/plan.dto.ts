@@ -3,17 +3,13 @@ import { ApiProperty, ApiOperation, ApiPayloadTooLargeResponse, ApiPropertyOptio
 
 export class PlanDto {
 
-    @ApiPropertyOptional({ example: 'b056c51823b25b2b2d098969105ad6442d44b0e6' })
+    @ApiPropertyOptional({ example: '2922b6a390b58f3b2266b4a2fb01d490aae1a880' })
     @IsString()
     hash: string;
 
     @ApiProperty({ description: '基地HASH' })
     @IsString()
     readonly baseHash: string;
-
-    @ApiProperty({ description: '地块did' })
-    @IsString()
-    readonly landDid: string;
 
     @ApiProperty({ description: '大棚HASH' })
     @IsString()
@@ -22,6 +18,14 @@ export class PlanDto {
     @ApiProperty({ description: '作物did' })
     @IsString()
     readonly plantDid: string;
+
+    @ApiProperty({ description: '种植数量' })
+    @IsString()
+    readonly amount: number;
+
+    @ApiProperty({ description: '种植面积（亩）' })
+    @IsString()
+    readonly area: number;
 
     @ApiPropertyOptional({ description: '任务周期id' })
     @IsNumber()
@@ -43,9 +47,26 @@ export class PlanDto {
     readonly productionExpection: string;
 
     @ApiPropertyOptional({ description: '预计采收时间' })
-    @IsString()
+    @IsDate()
     @IsOptional()
-    readonly harvestTime: string;
+    readonly harvestTime: Date;
+
+    @ApiProperty({ description: '种植周期' })
+    readonly plantingCycle: Array<PlantingCycleDto>;
+
+    @ApiProperty({ description: '种植方式：HYDROPONICS水培， AEROPONICS气雾培，SANDCULTURE沙培，FIELD大田' })
+    @IsString()
+    @IsIn(['HYDROPONICS', 'AEROPONICS', 'SANDCULTURE', 'FIELD'])
+    readonly plantingWay: string;
+
+    // 这里苗圃就不做了
+}
+
+
+class PlantingCycleDto {
+    @ApiProperty({ description: '种植周期名称' })
+    @IsString()
+    readonly name: string;
 
     @ApiProperty({ description: '种植开始时间' })
     @IsDate()
@@ -53,10 +74,5 @@ export class PlanDto {
 
     @ApiProperty({ description: '种植结束时间' })
     @IsDate()
-    readonly endTime: Date
-
-    // 这里苗圃就不做了
+    readonly endTime: Date;
 }
-
-
-
