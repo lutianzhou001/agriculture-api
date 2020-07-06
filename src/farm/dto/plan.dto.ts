@@ -19,16 +19,21 @@ export class PlanDto {
     @IsString()
     readonly plantDid: string;
 
+    @ApiPropertyOptional({ description: '种子数量' })
+    @IsNumber()
+    @IsOptional()
+    readonly seedsNumber: number;
+
     @ApiProperty({ description: '种植数量' })
-    @IsString()
+    @IsNumber()
     readonly amount: number;
 
     @ApiProperty({ description: '种植面积（亩）' })
-    @IsString()
+    @IsNumber()
     readonly area: number;
 
     @ApiPropertyOptional({ description: '任务周期id' })
-    @IsNumber()
+    @IsString()
     @IsOptional()
     readonly workGrowthId: string;
 

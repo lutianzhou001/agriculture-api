@@ -16,6 +16,9 @@ export class Plan extends Document {
     plantDid: string;
 
     @Prop()
+    seedsNumber: number;
+
+    @Prop()
     amount: number;
 
     @Prop()
