@@ -37,7 +37,7 @@ export class Plan extends Document {
     harvestTime: Date;
 
     @Prop()
-    plantingCycle: {
+    plantingCycles: {
         name: string;
 
         startTime: Date;

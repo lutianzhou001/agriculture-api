@@ -3,7 +3,7 @@ import { ApiProperty, ApiOperation, ApiPayloadTooLargeResponse, ApiPropertyOptio
 
 export class PlanDto {
 
-    @ApiPropertyOptional({ example: '2922b6a390b58f3b2266b4a2fb01d490aae1a880' })
+    @ApiPropertyOptional({ example: 'dfa732e98cf1fe5d7c1e358b0642acce3770096c' })
     @IsString()
     hash: string;
 
@@ -51,8 +51,14 @@ export class PlanDto {
     @IsOptional()
     readonly harvestTime: Date;
 
-    @ApiProperty({ description: '种植周期' })
-    readonly plantingCycle: Array<PlantingCycleDto>;
+    @ApiProperty({
+        description: '种植周期', example: {
+            "name": "种植周期名称1",
+            "startTime": "2020-07-02T07:14:12.236Z",
+            "endTime": "2020-07-02T07:14:12.236Z"
+        }
+    })
+    readonly plantingCycles: Array<PlantingCycleDto>;
 
     @ApiProperty({ description: '种植方式：HYDROPONICS水培， AEROPONICS气雾培，SANDCULTURE沙培，FIELD大田' })
     @IsString()

@@ -43,7 +43,7 @@ export class Purchase extends Document {
     purchaseTime: Date;
 
     @Prop()
-    picUrl: string;
+    picUrls: string[];
 }
 
 export const PurchaseSchema = SchemaFactory.createForClass(Purchase);

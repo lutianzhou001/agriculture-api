@@ -1,10 +1,11 @@
-import { IsString, IsDate, IsNumber, IsOptional } from 'class-validator';
+import { IsString, IsDate, IsNumber, IsOptional, IsArray } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class BaseDto {
 
     @ApiPropertyOptional({ example: '13620d9221eddc951b455a719462a54e3de474d1' })
     @IsString()
+    @IsOptional()
     hash: string;
 
     @ApiProperty({ description: '基地名称' })
@@ -64,6 +65,10 @@ export class BaseDto {
     @IsOptional()
     readonly identityCard: string;
 
+    @ApiPropertyOptional({ description: '作物did列表' })
+    @IsArray()
+    @IsOptional()
+    readonly plantDIDs: string[];
 }
 
 

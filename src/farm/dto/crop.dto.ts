@@ -1,21 +1,24 @@
-import { IsString, IsDate, IsNumber, IsObject, IsIn, IsHash, IsOptional, ValidateNested } from 'class-validator';
+import { IsString, IsDate, IsNumber, IsObject, IsIn, IsHash, IsOptional, ValidateNested, IsArray } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CropDto {
-    @ApiPropertyOptional({ example: 'c8a27edfeaf934b469eb14a8bcc5a9d23f38d0a5' })
+    @ApiPropertyOptional({ example: 'ffb3aeea8421fbc92a64f116307d5411ca074394' })
     @IsString()
+    @IsOptional()
     hash: string
 
     @ApiProperty({ description: '大棚HASH' })
     @IsString()
     readonly greenhouseHash: string;
 
-    @ApiProperty({ description: '大棚名称' })
+    @ApiPropertyOptional({ description: '大棚名称' })
     @IsString()
+    @IsOptional()
     readonly greenhouseName: string;
 
-    @ApiProperty({ description: '作物名称' })
+    @ApiPropertyOptional({ description: '作物名称' })
     @IsString()
+    @IsOptional()
     readonly plantName: string;
 
     @ApiProperty({ description: '作物did' })
@@ -26,16 +29,18 @@ export class CropDto {
     @IsString()
     readonly planHash: string;
 
-    @ApiProperty({ description: '农民名字' })
+    @ApiPropertyOptional({ description: '农民名字' })
     @IsString()
+    @IsOptional()
     readonly producerName: string;
 
     @ApiProperty({ description: '农民HASH' })
     @IsString()
     readonly producerHash: string;
 
-    @ApiProperty({ description: '农民电话' })
+    @ApiPropertyOptional({ description: '农民电话' })
     @IsString()
+    @IsOptional()
     readonly producerPhone: string;
 
     @ApiProperty({ description: '农民表现：UNDERESTIMATED未评价， PERFECT优，GOOD良好，FAILED差' })
@@ -45,42 +50,54 @@ export class CropDto {
 
     //@ValidateNested({ each: true })
     //@IsNotEmpty()
+    @IsArray()
     @ValidateNested({ each: true })
-    @ApiProperty({ description: '农资' })
-    readonly tool: Array<ToolsDto>;
+    @ApiProperty({
+        description: '农资', example: {
+            "toolDid": "string2",
+            "toolName": "string2",
+            "toolAmount": 2
+        }
+    })
+    readonly tools: Array<ToolsDto>;
 
-    @ApiProperty({ description: '流量' })
+    @ApiPropertyOptional({ description: '流量' })
     @IsString()
+    @IsOptional()
     readonly traffic: string;
 
-    @ApiProperty({ description: '开始灌溉时间' })
+    @ApiPropertyOptional({ description: '开始灌溉时间' })
     @IsDate()
+    @IsOptional()
     readonly startTime: Date;
 
-    @ApiProperty({ description: '结束灌溉时间' })
+    @ApiPropertyOptional({ description: '结束灌溉时间' })
     @IsDate()
+    @IsOptional()
     readonly endTime: Date;
 
-    @ApiProperty({ description: '农事时间' })
+    @ApiPropertyOptional({ description: '农事时间' })
     @IsDate()
+    @IsOptional()
     readonly cropTime: Date;
 
-    @ApiProperty({ description: '水量' })
+    @ApiPropertyOptional({ description: '水量' })
     @IsString()
     readonly waterAmount: string;
 
     @ApiPropertyOptional({ description: '视频路径' })
-    @IsString()
+    @IsArray()
     @IsOptional()
-    readonly videoUrl: string;
+    readonly videoUrls: string[];
 
     @ApiPropertyOptional({ description: '图片路径' })
+    @IsArray()
+    @IsOptional()
+    readonly picUrls: string[];
+
+    @ApiPropertyOptional({ description: '备注' })
     @IsString()
     @IsOptional()
-    readonly picUrl: string;
-
-    @ApiProperty({ description: '备注' })
-    @IsString()
     readonly remark: string;
 }
 

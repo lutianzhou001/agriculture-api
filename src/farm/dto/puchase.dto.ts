@@ -70,7 +70,7 @@ export class PurchaseDto {
     @ApiPropertyOptional({ description: '图片路径' })
     @IsString()
     @IsOptional()
-    readonly picUrl: string;
+    readonly picUrls: string[];
 }
 
 
