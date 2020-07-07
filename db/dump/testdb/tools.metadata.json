@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"testdb.tools"}],"uuid":"9785adbc8d2d460899fb27ef742aaa16"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"testdb.tools"}],"uuid":"0defb5daa7af4f7cb4c71f268434c1ae"}

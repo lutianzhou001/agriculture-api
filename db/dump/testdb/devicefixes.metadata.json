@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"testdb.devicefixes"}],"uuid":"e9940a33504e48f7ac132171fc5c6223"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"testdb.devicefixes"}],"uuid":"3bf0d786a7bf441facf3193f25828428"}
