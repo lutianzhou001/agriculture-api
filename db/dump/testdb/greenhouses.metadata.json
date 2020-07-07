@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"testdb.greenhouses"}],"uuid":"c61514e923184b938bc7738996f421dd"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"testdb.greenhouses"}],"uuid":"fb43816ca15f4e0bb51f6c0450921e26"}
