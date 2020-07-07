@@ -1,4 +1,4 @@
-import { IsString, IsIn, IsNumber, IsDate, IsOptional } from 'class-validator';
+import { IsString, IsIn, IsNumber, IsDate, IsOptional, IsArray } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { read } from 'fs';
 
@@ -33,7 +33,7 @@ export class PlantDto {
     readonly days: number;
 
     @ApiPropertyOptional({ description: '图片路径' })
-    @IsString()
+    @IsArray()
     @IsOptional()
     readonly picUrls: string[];
 }

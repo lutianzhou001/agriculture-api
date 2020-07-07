@@ -1,4 +1,4 @@
-import { IsString, IsIn, IsNumber, IsDate, IsOptional } from 'class-validator';
+import { IsString, IsIn, IsNumber, IsArray, IsOptional } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class ProducerDto {
@@ -27,4 +27,8 @@ export class ProducerDto {
     @IsOptional()
     readonly position: string;
 
+    @ApiPropertyOptional({ description: '基地hash的数组' })
+    @IsArray()
+    @IsOptional()
+    readonly baseHashs: string[];
 }
