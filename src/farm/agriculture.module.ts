@@ -19,6 +19,7 @@ import { Device, DeviceSchema } from './schemas/device.schema';
 import { DeviceFix, DeviceFixSchema } from './schemas/device.fix.schema';
 import { DeviceMonitor, DeviceMonitorSchema } from './schemas/device.monitor.schema';
 import { DeviceSwitch, DeviceSwitchSchema } from './schemas/device.switch.schema';
+import { PlantRecord, PlantRecordSchema } from './schemas/plant.record.schema';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { DeviceSwitch, DeviceSwitchSchema } from './schemas/device.switch.schema
       { name: DeviceFix.name, schema: DeviceFixSchema },
       { name: DeviceMonitor.name, schema: DeviceMonitorSchema },
       { name: DeviceSwitch.name, schema: DeviceSwitchSchema },
+      { name: PlantRecord.name, schema: PlantRecordSchema },
     ])
   ],
   providers: [AgricultureService],

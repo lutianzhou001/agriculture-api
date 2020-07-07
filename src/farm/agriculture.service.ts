@@ -18,6 +18,7 @@ import { Device } from './schemas/device.schema';
 import { DeviceFix } from './schemas/device.fix.schema';
 import { DeviceMonitor } from './schemas/device.monitor.schema';
 import { DeviceSwitch } from './schemas/device.switch.schema';
+import { PlantRecord } from './schemas/plant.record.schema';
 import { ProducerDto } from './dto/producer.dto';
 import { GreenhouseDto } from './dto/greenhouse.dto';
 import { FieldDto } from './dto/field.dto';
@@ -31,6 +32,7 @@ import { DeviceDto } from './dto/device.dto';
 import { DeviceFixDto } from './dto/device.fix.dto';
 import { DeviceMonitorDto } from './dto/device.monitor.dto';
 import { DeviceSwitchDto } from './dto/device.switch.dto';
+import { PlantRecordDto } from './dto/plant.record.dto';
 const hash = require('object-hash');
 
 @Injectable()
@@ -53,6 +55,7 @@ export class AgricultureService {
         @InjectModel(DeviceFix.name) private deviceFixModel: Model<DeviceFix>,
         @InjectModel(DeviceMonitor.name) private deviceMonitorModel: Model<DeviceMonitor>,
         @InjectModel(DeviceSwitch.name) private deviceSwitchModel: Model<DeviceSwitch>,
+        @InjectModel(PlantRecord.name) private plantRecordModel: Model<PlantRecord>,
     ) { }
 
     async createProducer(producerDto: ProducerDto) {
@@ -273,7 +276,7 @@ export class AgricultureService {
         return await this.greenhouseModel.find()
     }
 
-    async findGreenhouseByHase(hash) {
+    async findGreenhouseByHash(hash) {
         return await this.greenhouseModel.findOne({ hash: hash })
     }
 
@@ -289,7 +292,7 @@ export class AgricultureService {
         return await this.producerModel.find()
     }
 
-    async findProducerByHase(hash) {
+    async findProducerByHash(hash) {
         return await this.producerModel.findOne({ hash: hash })
     }
 
@@ -315,5 +318,27 @@ export class AgricultureService {
 
     async findDeviceByHash(hash) {
         return await this.deviceModel.findOne({ hash: hash })
+    }
+
+    async createPlantRecord(plantRecordDto: PlantRecordDto) {
+        if (plantRecordDto.hash == null) {
+            plantRecordDto.hash = String(Math.floor((Math.random() * 10000000) + 1))
+            var genhash = hash(plantRecordDto)
+            plantRecordDto.hash = genhash
+            const createPlantRecord = new this.plantRecordModel(plantRecordDto);
+            await createPlantRecord.save()
+            return createPlantRecord.hash;
+        } else {
+            var plantRecords = await this.plantRecordModel.findOneAndUpdate({ hash: plantRecordDto.hash }, plantRecordDto)
+            return plantRecords.hash
+        }
+    }
+
+    async findallPlantRecords() {
+        return await this.plantRecordModel.find().exec()
+    }
+
+    async findPlantRecordByHash(hash) {
+        return await this.plantRecordModel.findOne({ hash: hash })
     }
 }

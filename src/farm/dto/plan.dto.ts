@@ -5,6 +5,7 @@ export class PlanDto {
 
     @ApiPropertyOptional({ example: 'dfa732e98cf1fe5d7c1e358b0642acce3770096c' })
     @IsString()
+    @IsOptional()
     hash: string;
 
     @ApiProperty({ description: '基地HASH' })

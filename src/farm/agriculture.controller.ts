@@ -20,6 +20,7 @@ import { DeviceDto } from './dto/device.dto';
 import { DeviceFixDto } from './dto/device.fix.dto';
 import { DeviceMonitorDto } from './dto/device.monitor.dto';
 import { DeviceSwitchDto } from './dto/device.switch.dto';
+import { PlantRecordDto } from './dto/plant.record.dto';
 import { IResponse } from 'src/common/interface/response.interface';
 import { AgricultureService } from './agriculture.service';
 
@@ -46,7 +47,8 @@ export class AgricultureController {
                     phone: '13867457085',
                     baseAddress: '平湖广陈镇',
                     plantingArea: '120',
-                    did: '0xb76C665C62f9b3f24d447861175de1794d0e0397'
+                    did: '0xb76C665C62f9b3f24d447861175de1794d0e0397',
+                    ctime: '2020/7/6 14:47'
                 }]
             }
         },
@@ -162,22 +164,24 @@ export class AgricultureController {
                 success: true,
                 message: 'COMMON.SUCCESS',
                 data: [{
+                    plantDIDs: ['string'],
                     '_id': '5efd92964fa5e561154e3367',
-                    name: '',
-                    location: '',
-                    centre: '',
-                    area: '',
+                    name: 'string',
+                    location: 'string',
+                    centre: 'string',
+                    area: 'string',
                     altitude: 0,
-                    ownerDid: '',
-                    ownerAddress: '',
-                    ownerName: '',
-                    baseAddress: '',
-                    contact: '',
-                    phone: '',
-                    identityCard: '',
+                    ownerDid: 'string',
+                    ownerAddress: 'string',
+                    ownerName: 'string',
+                    baseAddress: 'string',
+                    contact: 'string',
+                    phone: 'string',
+                    identityCard: 'string',
                     hash: '13620d9221eddc951b455a719462a54e3de474d1',
                     '__v': 0
                 }, {
+                    plantDIDs: [],
                     '_id': '5efdc601f6edba51257d0c25',
                     name: 'stringss',
                     location: 'ssss',
@@ -218,19 +222,20 @@ export class AgricultureController {
                 success: true,
                 message: 'COMMON.SUCCESS',
                 data: {
+                    plantDIDs: ['string'],
                     '_id': '5efd92964fa5e561154e3367',
-                    name: '',
-                    location: '',
-                    centre: '',
-                    area: '',
+                    name: 'string',
+                    location: 'string',
+                    centre: 'string',
+                    area: 'string',
                     altitude: 0,
-                    ownerDid: '',
-                    ownerAddress: '',
-                    ownerName: '',
-                    baseAddress: '',
-                    contact: '',
-                    phone: '',
-                    identityCard: '',
+                    ownerDid: 'string',
+                    ownerAddress: 'string',
+                    ownerName: 'string',
+                    baseAddress: 'string',
+                    contact: 'string',
+                    phone: 'string',
+                    identityCard: 'string',
                     hash: '13620d9221eddc951b455a719462a54e3de474d1',
                     '__v': 0
                 }
@@ -297,7 +302,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取一个大棚', summary: '获取一个大棚' })
     async getGreenhouseByHash(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findGreenhouseByHase(params.hash);
+            var mock = await this.agriculture.findGreenhouseByHash(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -408,7 +413,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取一个农民', summary: '获取一个农民' })
     async getProducerByHash(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findProducerByHase(params.hash);
+            var mock = await this.agriculture.findProducerByHash(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -737,6 +742,65 @@ export class AgricultureController {
             return new ResponseError('COMMON.ERROR', error);
         }
     }
+
+    @ApiResponse({
+        status: 201,
+        schema: {
+            example:
+            {
+                success: true,
+                message: 'COMMON.SUCCESS',
+                data: {
+                    hash: 'bcf7cce4c942a172f51f956cbfcdf7a78e8b4831'
+                }
+            }
+        },
+    })
+    @ApiProduces('application/json; charset=utf-8')
+    @Post('plant/records')
+    @ApiOperation({ description: '作物流水记录', summary: '作物流水记录' })
+    async plantRecord(@Body() plantRecordDto: PlantRecordDto): Promise<any> {
+        try {
+            console.log("aaa")
+            var mock = await this.agriculture.createPlantRecord(plantRecordDto)
+            return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
+        }
+        catch (error) {
+            return await new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @ApiParam({ name: 'hash', required: true, example: 'bcf7cce4c942a172f51f956cbfcdf7a78e8b4831' })
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
+    @Get('plant/records/:hash')
+    @ApiOperation({ description: '获取一个作物流水记录', summary: '获取一个作物流水记录' })
+    async getPlantRecordByHash(@Param() params): Promise<IResponse> {
+        try {
+            console.log("f")
+            var mock = await this.agriculture.findPlantRecordByHash(params.hash);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @ApiResponse({ status: 200 })
+    @ApiProduces('application/json; charset=utf-8')
+    @Get('plant/records')
+    @ApiOperation({ description: '获取作物流水记录列表', summary: '获取作物流水记录列表' })
+    async findallPlantRecordss(@Param() params): Promise<IResponse> {
+        try {
+            var mock = await this.agriculture.findallPlantRecords();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+
 }
 
 
