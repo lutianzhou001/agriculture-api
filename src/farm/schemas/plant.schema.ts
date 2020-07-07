@@ -7,9 +7,6 @@ export class Plant extends Document {
     did: string;
 
     @Prop()
-    hash: string;
-
-    @Prop()
     name: string;
 
     @Prop()
@@ -23,6 +20,9 @@ export class Plant extends Document {
 
     @Prop()
     days: number;
+
+    @Prop()
+    picUrls: string[];
 }
 
 export const PlantSchema = SchemaFactory.createForClass(Plant);

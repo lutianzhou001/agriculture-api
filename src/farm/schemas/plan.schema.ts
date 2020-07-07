@@ -10,13 +10,19 @@ export class Plan extends Document {
     baseHash: string;
 
     @Prop()
-    landDid: string;
-
-    @Prop()
     greenhouseHash: string;
 
     @Prop()
     plantDid: string;
+
+    @Prop()
+    seedsNumber: number;
+
+    @Prop()
+    amount: number;
+
+    @Prop()
+    area: number;
 
     @Prop()
     workGrowthId: string;
@@ -31,13 +37,16 @@ export class Plan extends Document {
     productionExpection: string;
 
     @Prop()
-    harvestTime: string;
+    harvestTime: Date;
 
     @Prop()
-    startTime: Date;
+    plantingCycles: {
+        name: string;
 
-    @Prop()
-    endTime: Date
+        startTime: Date;
+
+        endTime: Date;
+    }[];
 }
 
 export const PlanSchema = SchemaFactory.createForClass(Plan);

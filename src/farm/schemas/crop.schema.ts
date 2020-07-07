@@ -19,7 +19,7 @@ export class Crop extends Document {
     plantDid: string;
 
     @Prop()
-    workHash: string;
+    planHash: string;
 
     @Prop()
     producerName: string;
@@ -34,13 +34,13 @@ export class Crop extends Document {
     status: string
 
     @Prop()
-    toolDid: string;
+    tools: {
+        toolDid: string;
 
-    @Prop()
-    toolName: string;
+        toolName: string;
 
-    @Prop()
-    toolAmount: number;
+        toolAmount: number;
+    }[];
 
     @Prop()
     traffic: string;
@@ -52,10 +52,19 @@ export class Crop extends Document {
     endTime: Date;
 
     @Prop()
+    cropTime: Date;
+
+    @Prop()
     waterAmount: string;
 
     @Prop()
-    waterStatus: string
+    videoUrls: string[];
+
+    @Prop()
+    picUrls: string[];
+
+    @Prop()
+    remark: string;
 }
 
 export const CropSchema = SchemaFactory.createForClass(Crop);

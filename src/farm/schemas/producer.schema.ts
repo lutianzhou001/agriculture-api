@@ -17,6 +17,9 @@ export class Producer extends Document {
 
     @Prop()
     position: string;
+
+    @Prop()
+    baseHashs: string[];
 }
 
 export const ProducerSchema = SchemaFactory.createForClass(Producer);

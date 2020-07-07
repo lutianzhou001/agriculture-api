@@ -41,6 +41,9 @@ export class Base extends Document {
 
     @Prop()
     identityCard: string;
+
+    @Prop()
+    plantDIDs: string[];
 }
 
 export const BaseSchema = SchemaFactory.createForClass(Base);
