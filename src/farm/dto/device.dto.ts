@@ -9,11 +9,11 @@ export class DeviceDto {
 
     @ApiProperty({ description: '设备编号' })
     @IsString()
-    readonly deviceSN: string;
+    readonly sn: string;
 
     @ApiProperty({ description: '设备名称' })
     @IsString()
-    readonly deviceName: string
+    readonly name: string
 
     @ApiPropertyOptional({ description: '设备描述' })
     @IsString()
