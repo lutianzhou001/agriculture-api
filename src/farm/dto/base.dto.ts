@@ -12,7 +12,7 @@ export class BaseDto {
     @IsString()
     readonly name: string;
 
-    @ApiPropertyOptional({ description: '基地中心数据' })
+    @ApiPropertyOptional({ description: '基地空间数据' })
     @IsString()
     @IsOptional()
     readonly location: string;

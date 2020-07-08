@@ -7,10 +7,10 @@ export class Device extends Document {
     hash: string;
 
     @Prop()
-    deviceSN: string;
+    sn: string;
 
     @Prop()
-    deviceName: string
+    name: string
 
     @Prop()
     description: string;

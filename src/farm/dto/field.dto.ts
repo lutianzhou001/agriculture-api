@@ -3,22 +3,22 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class FieldDto {
 
-    @ApiPropertyOptional({ example: 'ee2c846ff06ea05751dfc8eb118953790a871cda' })
+    @ApiPropertyOptional({ example: 'd8868b2d7c1610ed6fc696a6e01019df2c45686b' })
     @IsString()
     hash: string
 
-    @ApiProperty({ description: '基地hash', example: '13620d9221eddc951b455a719462a54e3de474d1' })
+    @ApiProperty({ description: '基地hash', example: 'b28605c3d25fb3ccab1f66edbe7469b6ed3dceb7' })
     @IsString()
     baseHash: string
 
     @ApiProperty({ description: '田的名称', example: '1#田' })
     @IsString()
-    readonly fieldName: string;
+    readonly name: string;
 
     @ApiPropertyOptional({ description: '田的型号' })
     @IsString()
     @IsOptional()
-    readonly fieldModel: string
+    readonly type: string
 
     @ApiPropertyOptional({ description: '田的空间数据' })
     @IsString()

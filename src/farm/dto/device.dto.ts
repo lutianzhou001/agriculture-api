@@ -3,17 +3,17 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class DeviceDto {
 
-    @ApiPropertyOptional({ example: 'c0f48ade959b61f3a0668e641fa5adac6f1b23fb' })
+    @ApiPropertyOptional({ example: '44dab242eb991a06563b148dadb88d0719ba9ff9' })
     @IsString()
     hash: string
 
     @ApiProperty({ description: '设备编号' })
     @IsString()
-    readonly deviceSN: string;
+    readonly sn: string;
 
     @ApiProperty({ description: '设备名称' })
     @IsString()
-    readonly deviceName: string
+    readonly name: string
 
     @ApiPropertyOptional({ description: '设备描述' })
     @IsString()

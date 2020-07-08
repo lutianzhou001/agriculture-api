@@ -25,13 +25,10 @@ export class Plan extends Document {
     area: number;
 
     @Prop()
-    workGrowthId: string;
+    name: string;
 
     @Prop()
-    workName: string;
-
-    @Prop()
-    workDescription: string;
+    description: string;
 
     @Prop()
     productionExpection: string;
