@@ -10,10 +10,10 @@ export class Greenhouse extends Document {
     baseHash: string
 
     @Prop()
-    greenhouseName: string;
+    name: string;
 
     @Prop()
-    greenhouseModel: string;
+    type: string;
 
     @Prop()
     location: string;
