@@ -619,7 +619,7 @@ export class AgricultureController {
                 success: true,
                 message: 'COMMON.SUCCESS',
                 data: {
-                    hash: 'c0f48ade959b61f3a0668e641fa5adac6f1b23fb'
+                    hash: '44dab242eb991a06563b148dadb88d0719ba9ff9'
                 }
             }
         },
@@ -651,7 +651,7 @@ export class AgricultureController {
         }
     }
 
-    @ApiParam({ name: 'hash', required: true, example: 'c0f48ade959b61f3a0668e641fa5adac6f1b23fb' })
+    @ApiParam({ name: 'hash', required: true, example: '44dab242eb991a06563b148dadb88d0719ba9ff9' })
     @ApiResponse({ status: 200 })
     @Get('devices/:hash')
     @ApiOperation({ description: '获取一个设备', summary: '获取一个设备' })
