@@ -7,7 +7,7 @@ export class GreenhouseDto {
     @IsString()
     hash: string;
 
-    @ApiProperty({ description: '基地hash', example: '54' })
+    @ApiProperty({ description: '基地hash', example: 'b28605c3d25fb3ccab1f66edbe7469b6ed3dceb7' })
     @IsString()
     baseHash: string;
 

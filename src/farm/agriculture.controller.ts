@@ -318,7 +318,7 @@ export class AgricultureController {
                 success: true,
                 message: 'COMMON.SUCCESS',
                 data: {
-                    hash: '0xc33b2F902E4700CBb53Ad9A86699c704D5CdCe25'
+                    hash: 'd8868b2d7c1610ed6fc696a6e01019df2c45686b'
                 }
             }
         },
@@ -350,7 +350,7 @@ export class AgricultureController {
         }
     }
 
-    @ApiParam({ name: 'hash', required: true, example: 'ee2c846ff06ea05751dfc8eb118953790a871cda' })
+    @ApiParam({ name: 'hash', required: true, example: 'd8868b2d7c1610ed6fc696a6e01019df2c45686b' })
     @ApiResponse({ status: 200 })
     @ApiProduces('application/json; charset=utf-8')
     @Get('fields/:hash')
@@ -593,7 +593,7 @@ export class AgricultureController {
                 success: true,
                 message: 'COMMON.SUCCESS',
                 data: {
-                    hash: 'dfa732e98cf1fe5d7c1e358b0642acce3770096c'
+                    hash: '2b40bc0f62c65fb81a46c2f45b8188cce0cba3f7'
                 }
             }
         },

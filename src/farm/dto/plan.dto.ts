@@ -3,7 +3,7 @@ import { ApiProperty, ApiOperation, ApiPayloadTooLargeResponse, ApiPropertyOptio
 
 export class PlanDto {
 
-    @ApiPropertyOptional({ example: 'dfa732e98cf1fe5d7c1e358b0642acce3770096c' })
+    @ApiPropertyOptional({ example: '2b40bc0f62c65fb81a46c2f45b8188cce0cba3f7' })
     @IsString()
     @IsOptional()
     hash: string;
@@ -33,19 +33,14 @@ export class PlanDto {
     @IsNumber()
     readonly area: number;
 
-    @ApiPropertyOptional({ description: '任务周期id' })
+    @ApiProperty({ description: '任务(计划)名称' })
+    @IsString()
+    readonly name: string;
+
+    @ApiPropertyOptional({ description: '任务(计划)简介' })
     @IsString()
     @IsOptional()
-    readonly workGrowthId: string;
-
-    @ApiProperty({ description: '任务名称' })
-    @IsString()
-    readonly workName: string;
-
-    @ApiPropertyOptional({ description: '任务简介' })
-    @IsString()
-    @IsOptional()
-    readonly workDescription: string;
+    readonly description: string;
 
     @ApiPropertyOptional({ description: '预计产量' })
     @IsString()

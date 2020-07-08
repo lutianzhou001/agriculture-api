@@ -10,10 +10,10 @@ export class Field extends Document {
     baseHash: string
 
     @Prop()
-    fieldName: string;
+    name: string;
 
     @Prop()
-    fieldModel: string;
+    type: string;
 
     @Prop()
     location: string;
