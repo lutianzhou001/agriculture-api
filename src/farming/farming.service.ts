@@ -36,7 +36,7 @@ import { PlantRecordDto } from './dto/plant.record.dto';
 const hash = require('object-hash');
 
 @Injectable()
-export class AgricultureService {
+export class FarmingService {
     constructor(
         @InjectModel(Enterprise.name) private enterpriseModel: Model<Producer>,
         @InjectModel(Land.name) private landModel: Model<Land>,

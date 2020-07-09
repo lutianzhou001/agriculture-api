@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AgricultureService } from './agriculture.service';
-import { AgricultureController } from './agriculture.controller';
+import { FarmingService } from './farming.service';
+import { FarmingController } from './farming.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Enterprise, EnterpriseSchema } from './schemas/enterprise.schema';
 import { Land, LandSchema } from './schemas/land.schema';
@@ -44,7 +44,7 @@ import { PlantRecord, PlantRecordSchema } from './schemas/plant.record.schema';
       { name: PlantRecord.name, schema: PlantRecordSchema },
     ])
   ],
-  providers: [AgricultureService],
-  controllers: [AgricultureController]
+  providers: [FarmingService],
+  controllers: [FarmingController]
 })
-export class AgricultureModule { }
+export class FarmingModule { }

@@ -22,11 +22,11 @@ import { DeviceMonitorDto } from './dto/device.monitor.dto';
 import { DeviceSwitchDto } from './dto/device.switch.dto';
 import { PlantRecordDto } from './dto/plant.record.dto';
 import { IResponse } from 'src/common/interface/response.interface';
-import { AgricultureService } from './agriculture.service';
+import { FarmingService } from './farming.service';
 
-@Controller('farm')
-export class AgricultureController {
-    constructor(private readonly agriculture: AgricultureService) { }
+@Controller('farming')
+export class FarmingController {
+    constructor(private readonly farming: FarmingService) { }
 
     @ApiResponse({
         status: 200,
@@ -58,7 +58,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取所有企业信息', summary: '获取所有企业信息' })
     async getEnterprises(): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findAllEnterprises();
+            var mock = await this.farming.findAllEnterprises();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -96,7 +96,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取某个企业信息', summary: '获取某个企业信息' })
     async getEnterpriseByDID(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findEnterpriseByDID(params.did);
+            var mock = await this.farming.findEnterpriseByDID(params.did);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -110,7 +110,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取地块信息', summary: '获取地块信息' })
     async getLands(): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findAllLands();
+            var mock = await this.farming.findAllLands();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -122,7 +122,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取某个地块信息', summary: '获取某个地块信息' })
     async getLandByDID(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findLandByDID(params.did);
+            var mock = await this.farming.findLandByDID(params.did);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -148,7 +148,7 @@ export class AgricultureController {
     @ApiOperation({ description: '创建一个基地', summary: '创建一个基地' })
     async createBase(@Body() baseDto: BaseDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createBase(baseDto);
+            var mock = await this.farming.createBase(baseDto);
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -206,7 +206,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取所有基地信息', summary: '获取所有基地信息' })
     async getBases(): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findAllBases();
+            var mock = await this.farming.findAllBases();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -247,7 +247,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取某个基地信息', summary: '获取某个基地信息' })
     async getBaseByHash(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.getBaseByHash(params.hash);
+            var mock = await this.farming.getBaseByHash(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -273,7 +273,7 @@ export class AgricultureController {
     @ApiOperation({ description: '创建一个大棚', summary: '创建一个大棚' })
     async createGreenhouse(@Body() greenhouseDto: GreenhouseDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createGreenhouse(greenhouseDto)
+            var mock = await this.farming.createGreenhouse(greenhouseDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -287,7 +287,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取大棚列表', summary: '获取大棚列表' })
     async findallGreenhouses(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findallGreenhouses();
+            var mock = await this.farming.findallGreenhouses();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -302,7 +302,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取一个大棚', summary: '获取一个大棚' })
     async getGreenhouseByHash(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findGreenhouseByHash(params.hash);
+            var mock = await this.farming.findGreenhouseByHash(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -328,7 +328,7 @@ export class AgricultureController {
     @ApiOperation({ description: '创建一个田', summary: '创建一个田' })
     async createField(@Body() fieldDto: FieldDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createField(fieldDto)
+            var mock = await this.farming.createField(fieldDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -342,7 +342,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取田的列表', summary: '获取田的列表' })
     async findallFields(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findallFields();
+            var mock = await this.farming.findallFields();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -357,7 +357,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取一个田', summary: '获取一个田' })
     async getFieldByHash(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findFieldByHash(params.hash);
+            var mock = await this.farming.findFieldByHash(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -382,9 +382,9 @@ export class AgricultureController {
     @Post('producers/create')
     @ApiOperation({ description: '创建一个农民', summary: '创建一个农民' })
     async createProducer(@Body() producerDto: ProducerDto): Promise<any> {
-        //return await this.agriculture.createProducer(producerDto);
+        //return await this.farming.createProducer(producerDto);
         try {
-            var mock = await this.agriculture.createProducer(producerDto)
+            var mock = await this.farming.createProducer(producerDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -398,7 +398,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取农民列表', summary: '获取农民列表' })
     async findallProducers(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findallProducers();
+            var mock = await this.farming.findallProducers();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -413,7 +413,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取一个农民', summary: '获取一个农民' })
     async getProducerByHash(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findProducerByHash(params.hash);
+            var mock = await this.farming.findProducerByHash(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -427,7 +427,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取所有种植物信息', summary: '获取所有种植物信息' })
     async getPlants(): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findAllPlants();
+            var mock = await this.farming.findAllPlants();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -443,7 +443,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取某个种植物信息', summary: '获取某个种植物信息' })
     async getPlantByDID(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findPlantByDID(params.did);
+            var mock = await this.farming.findPlantByDID(params.did);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -458,7 +458,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取所有农资信息', summary: '获取所有农资信息' })
     async getTools(): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findAllTools();
+            var mock = await this.farming.findAllTools();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -473,7 +473,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取某个农资信息', summary: '获取某个农资信息' })
     async getToolByDID(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findToolByDID(params.did);
+            var mock = await this.farming.findToolByDID(params.did);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -495,11 +495,11 @@ export class AgricultureController {
         },
     })
     @ApiProduces('application/json; charset=utf-8')
-    @Post('farming/crop')
+    @Post('crop')
     @ApiOperation({ description: '作物农事', summary: '作物农事' })
     async cropfarming(@Body() cropDto: CropDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createCrop(cropDto)
+            var mock = await this.farming.createCrop(cropDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -521,11 +521,11 @@ export class AgricultureController {
         },
     })
     @ApiProduces('application/json; charset=utf-8')
-    @Post('farming/patrol')
+    @Post('patrol')
     @ApiOperation({ description: '大棚农事(巡棚)', summary: '大棚农事(巡棚)' })
     async greenhousefarming(@Body() patrolDto: PatrolDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createPatrol(patrolDto)
+            var mock = await this.farming.createPatrol(patrolDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -551,7 +551,7 @@ export class AgricultureController {
     @ApiOperation({ description: '农资采购', summary: '农资采购' })
     async purchase(@Body() purchaseDto: PurchaseDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createPurchase(purchaseDto)
+            var mock = await this.farming.createPurchase(purchaseDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -577,7 +577,7 @@ export class AgricultureController {
     @ApiOperation({ description: '农资使用', summary: '农资使用' })
     async use(@Body() useDto: UseDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createUse(useDto)
+            var mock = await this.farming.createUse(useDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -603,7 +603,7 @@ export class AgricultureController {
     @ApiOperation({ description: '计划', summary: '计划' })
     async plan(@Body() planDto: PlanDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createPlan(planDto)
+            var mock = await this.farming.createPlan(planDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -629,7 +629,7 @@ export class AgricultureController {
     @ApiOperation({ description: '创建一个设备', summary: '创建一个设备' })
     async createDevice(@Body() deviceDto: DeviceDto): Promise<any> {
         try {
-            var mock = await this.agriculture.createDevice(deviceDto)
+            var mock = await this.farming.createDevice(deviceDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -643,7 +643,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取设备列表', summary: '获取设备列表' })
     async findallDevices(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findallDevices();
+            var mock = await this.farming.findallDevices();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -657,7 +657,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取一个设备', summary: '获取一个设备' })
     async getDeviceByHash(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findDeviceByHash(params.hash);
+            var mock = await this.farming.findDeviceByHash(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -683,7 +683,7 @@ export class AgricultureController {
     @ApiOperation({ description: '维修一个设备', summary: '维修一个设备' })
     async fixDevice(@Body() deviceFixDto: DeviceFixDto): Promise<any> {
         try {
-            var mock = await this.agriculture.fixDevice(deviceFixDto)
+            var mock = await this.farming.fixDevice(deviceFixDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -709,7 +709,7 @@ export class AgricultureController {
     @ApiOperation({ description: '添加监控信息', summary: '添加监控信息' })
     async monitorDevice(@Body() deviceMonitorDto: DeviceMonitorDto): Promise<any> {
         try {
-            var mock = await this.agriculture.monitorDevice(deviceMonitorDto)
+            var mock = await this.farming.monitorDevice(deviceMonitorDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -735,7 +735,7 @@ export class AgricultureController {
     @ApiOperation({ description: '添加开关信息', summary: '添加开关信息' })
     async switchDevice(@Body() deviceSwitchDto: DeviceSwitchDto): Promise<any> {
         try {
-            var mock = await this.agriculture.switchDevice(deviceSwitchDto)
+            var mock = await this.farming.switchDevice(deviceSwitchDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -762,7 +762,7 @@ export class AgricultureController {
     async plantRecord(@Body() plantRecordDto: PlantRecordDto): Promise<any> {
         try {
             console.log("aaa")
-            var mock = await this.agriculture.createPlantRecord(plantRecordDto)
+            var mock = await this.farming.createPlantRecord(plantRecordDto)
             return await new ResponseSuccess('COMMON.SUCCESS', { hash: mock });
         }
         catch (error) {
@@ -778,7 +778,7 @@ export class AgricultureController {
     async getPlantRecordByHash(@Param() params): Promise<IResponse> {
         try {
             console.log("f")
-            var mock = await this.agriculture.findPlantRecordByHash(params.hash);
+            var mock = await this.farming.findPlantRecordByHash(params.hash);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -792,7 +792,7 @@ export class AgricultureController {
     @ApiOperation({ description: '获取作物流水记录列表', summary: '获取作物流水记录列表' })
     async findallPlantRecordss(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.agriculture.findallPlantRecords();
+            var mock = await this.farming.findallPlantRecords();
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {

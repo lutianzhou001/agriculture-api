@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AgricultureModule } from './farm/agriculture.module';
+import { FarmingModule } from './farming/farming.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { default as config } from './config';
 
@@ -11,7 +11,7 @@ const authSource = config.db.authSource ? ('?authSource=' + config.db.authSource
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://' + userString + config.db.host + ':' + (config.db.port || '27017') + '/' + config.db.database + authSource, { useFindAndModify: false }),
-    AgricultureModule],
+    FarmingModule],
   controllers: [AppController],
   providers: [AppService],
 })
