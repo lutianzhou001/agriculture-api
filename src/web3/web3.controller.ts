@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+import { Controller, Get, Param, Query, Post, Body } from '@nestjs/common';
 import { IResponse } from 'src/common/interface/response.interface';
 import { ApiOperation, ApiBody, ApiParam, ApiProduces, ApiResponse } from '@nestjs/swagger';
 import { ResponseSuccess, ResponseError } from '../common/dto/response.dto';
@@ -6,7 +6,8 @@ import { Web3Service } from './web3.service';
 
 @Controller('web3')
 export class Web3Controller {
-    constructor(private readonly web3: Web3Service) { }
+    constructor(
+        private readonly web3: Web3Service) { }
 
     /*@Get('realtimetx')
     @ApiOperation({ description: '获取节点最新块高', summary: '获取节点最新块高' })
@@ -14,7 +15,7 @@ export class Web3Controller {
         try {
             var mock = {}
             mock['blocknumber'] = await this.web3.getBlockNumber();
-            mock['']
+            mock['transactionNumber'] = await this.web3.getTransactionTotal().then((data) => { return data.txSum })
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -22,26 +23,41 @@ export class Web3Controller {
         }
     }*/
 
+    @Get('overview')
+    @ApiOperation({ description: 'overview', summary: 'overview' })
+    async getOverview(): Promise<IResponse> {
+        try {
+            var mock = {}
+            mock['nodes'] = await this.web3.getConsensusList({}).then((data) => { return data.data });
+            mock['transactions'] = await this.web3.getTransactionTotal();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
     @Get('blockNumber')
     @ApiOperation({ description: '获取节点最新块高', summary: '获取节点最新块高' })
     async getBlockNumber(): Promise<IResponse> {
         try {
             var mock = await this.web3.getBlockNumber();
-            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+            var mockjson = { height: mock }
+            return await new ResponseSuccess('COMMON.SUCCESS', mockjson);
         }
         catch (error) {
             return new ResponseError('COMMON.ERROR', error);
         }
     }
 
-    @Get('WeBASE-Front/precompiled/consensus/list')
-    @ApiParam({ name: 'groupId', example: 1 })
-    @ApiParam({ name: 'pageSize', example: 10 })
-    @ApiParam({ name: 'pageNumber', example: 1 })
+    @Get('consensus/list')
+    @ApiParam({ name: 'groupId', required: false, example: 1 })
+    @ApiParam({ name: 'pageSize', required: false, example: 10 })
+    @ApiParam({ name: 'pageNumber', required: false, example: 1 })
     @ApiOperation({ description: '获取节点的list列表，列表包含节点id，节点共识状态', summary: '获取节点的list列表，列表包含节点id，节点共识状态' })
-    async getConsensusList(@Param() params): Promise<IResponse> {
+    async getConsensusList(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.web3.getConsensusList(params);
+            var mock = await this.web3.getConsensusList(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -49,7 +65,20 @@ export class Web3Controller {
         }
     }
 
-    /*@Get('blockByNumber/:blockNumber')
+    @Get('blockTransCnt/:blockNumber')
+    @ApiParam({ name: 'blockNumber', example: 78 })
+    @ApiOperation({ description: '根据块高获取该块中的交易个数', summary: '根据块高获取该块中的交易个数' })
+    async getBlockTransCnt(@Param('blockNumber') params): Promise<IResponse> {
+        try {
+            var mock = await this.web3.getBlockTransCnt(params);
+            return await new ResponseSuccess('COMMON.SUCCESS', { cnt: mock });
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @Get('blockByNumber/:blockNumber')
     @ApiParam({ name: 'blockNumber', example: 78 })
     @ApiOperation({ description: '通过块高获取块信息', summary: '通过块高获取块信息' })
     async getBlockByNumber(@Param() params): Promise<IResponse> {
@@ -62,7 +91,7 @@ export class Web3Controller {
         }
     }
 
-    @Get('blockByHash/:blockHash')
+    /*@Get('blockByHash/:blockHash')
     @ApiParam({ name: 'blockHash', example: '0x4b3f7685327306c93dd2ecde8317ef366468d62287f27479f0d6e975a6ce4ea8' })
     @ApiOperation({ description: '通过块hash获取块信息', summary: '通过块hash获取块信息' })
     async getBlockByHash(@Param() params): Promise<IResponse> {
@@ -164,6 +193,63 @@ export class Web3Controller {
     async getTransactionTotal(): Promise<IResponse> {
         try {
             var mock = await this.web3.getTransactionTotal();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @Get('search')
+    @ApiParam({ name: 'input', example: 78 })
+    @ApiOperation({ description: '如果输入块高就返回区块信息，如果输入交易hash就返回交易信息', summary: '如果输入块高就返回区块信息，如果输入交易hash就返回交易信息' })
+    async getSearch(@Query() query): Promise<IResponse> {
+        try {
+            var mock = await this.web3.getSearch(query.input);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @Get('transactions/list')
+    @ApiParam({ name: 'limit', required: false, example: 10 })
+    @ApiParam({ name: 'offset', required: false, example: 0 })
+    @ApiOperation({ description: '交易列表', summary: '交易列表' })
+    async getTransactionsList(@Query() query): Promise<IResponse> {
+        try {
+            var mock = await this.web3.getTransactionsList(query);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @Get('blocks/list')
+    @ApiParam({ name: 'limit', required: false, example: 10 })
+    @ApiParam({ name: 'offset', required: false, example: 0 })
+    @ApiOperation({ description: '区块列表', summary: '区块列表' })
+    async getBlocksList(@Query() query): Promise<IResponse> {
+        try {
+            var mock = await this.web3.getBlocksList(query);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+
+    @Get('evidences/list')
+    @ApiParam({ name: 'limit', required: false, example: 10 })
+    @ApiParam({ name: 'offset', required: false, example: 0 })
+    @ApiParam({ name: 'type', required: false, example: 'enterprises' })
+    @ApiOperation({ description: '溯源列表', summary: '溯源列表' })
+    async getEvidencesList(@Query() query): Promise<IResponse> {
+        try {
+            var mock = await this.web3.getEvidencesList(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {

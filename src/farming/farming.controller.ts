@@ -1,6 +1,6 @@
 
 
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Query } from '@nestjs/common';
 import { ApiOperation, ApiBody, ApiParam, ApiProduces, ApiResponse } from '@nestjs/swagger';
 import { ResponseSuccess, ResponseError } from '../common/dto/response.dto';
 import { PatrolDto } from './dto/patrol.dto';
@@ -56,9 +56,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('enterprises')
     @ApiOperation({ description: '获取所有企业信息', summary: '获取所有企业信息' })
-    async getEnterprises(): Promise<IResponse> {
+    async getEnterprises(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findAllEnterprises();
+            var mock = await this.farming.findAllEnterprises(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -108,9 +108,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('lands')
     @ApiOperation({ description: '获取地块信息', summary: '获取地块信息' })
-    async getLands(): Promise<IResponse> {
+    async getLands(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findAllLands();
+            var mock = await this.farming.findAllLands(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -204,9 +204,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('bases')
     @ApiOperation({ description: '获取所有基地信息', summary: '获取所有基地信息' })
-    async getBases(): Promise<IResponse> {
+    async getBases(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findAllBases();
+            var mock = await this.farming.findAllBases(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -285,9 +285,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('greenhouses')
     @ApiOperation({ description: '获取大棚列表', summary: '获取大棚列表' })
-    async findallGreenhouses(@Param() params): Promise<IResponse> {
+    async findallGreenhouses(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallGreenhouses();
+            var mock = await this.farming.findallGreenhouses(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -340,9 +340,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('fields')
     @ApiOperation({ description: '获取田的列表', summary: '获取田的列表' })
-    async findallFields(@Param() params): Promise<IResponse> {
+    async findallFields(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallFields();
+            var mock = await this.farming.findallFields(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -396,9 +396,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('producers')
     @ApiOperation({ description: '获取农民列表', summary: '获取农民列表' })
-    async findallProducers(@Param() params): Promise<IResponse> {
+    async findallProducers(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallProducers();
+            var mock = await this.farming.findallProducers(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -425,9 +425,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('plants')
     @ApiOperation({ description: '获取所有种植物信息', summary: '获取所有种植物信息' })
-    async getPlants(): Promise<IResponse> {
+    async getPlants(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findAllPlants();
+            var mock = await this.farming.findAllPlants(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -456,9 +456,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('tools')
     @ApiOperation({ description: '获取所有农资信息', summary: '获取所有农资信息' })
-    async getTools(): Promise<IResponse> {
+    async getTools(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findAllTools();
+            var mock = await this.farming.findAllTools(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -641,9 +641,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('devices')
     @ApiOperation({ description: '获取设备列表', summary: '获取设备列表' })
-    async findallDevices(@Param() params): Promise<IResponse> {
+    async findallDevices(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallDevices();
+            var mock = await this.farming.findallDevices(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -790,9 +790,9 @@ export class FarmingController {
     @ApiProduces('application/json; charset=utf-8')
     @Get('plant/records')
     @ApiOperation({ description: '获取作物流水记录列表', summary: '获取作物流水记录列表' })
-    async findallPlantRecordss(@Param() params): Promise<IResponse> {
+    async findallPlantRecordss(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallPlantRecords();
+            var mock = await this.farming.findallPlantRecords(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
