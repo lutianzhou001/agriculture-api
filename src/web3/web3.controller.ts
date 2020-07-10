@@ -36,31 +36,12 @@ export class Web3Controller {
 
     @Get('WeBASE-Front/precompiled/consensus/list')
     @ApiParam({ name: 'groupId', example: 1 })
-    @ApiParam({ name: 'pageSize', example: 8 })
+    @ApiParam({ name: 'pageSize', example: 10 })
     @ApiParam({ name: 'pageNumber', example: 1 })
-    @ApiOperation({ description: '获取节点最新块高', summary: '获取节点最新块高' })
+    @ApiOperation({ description: '获取节点的list列表，列表包含节点id，节点共识状态', summary: '获取节点的list列表，列表包含节点id，节点共识状态' })
     async getConsensusList(@Param() params): Promise<IResponse> {
         try {
-            var mock = {
-                "code": 0,
-                "message": "success",
-                "data": [
-                    {
-                        "nodeId": "13e0f2b94cbce924cc3737385a38587939e809fb786c4fc34a6ba3ea97693bccfa173b352ac41f1dbb97e9e4910ccbec1df38ad4020cef3b2044e833188adad9",
-                        "nodeType": "sealer"
-                    },
-                    {
-                        "nodeId": "bce4b2269c25c2cdba30155396bfe90af08c3c08cff205213477683117e4243ebe26588479519e636a5d5d93545cab778435cacacc41993f28f58f60fa5ceb72",
-                        "nodeType": "sealer"
-                    },
-                    {
-                        "nodeId": "e815cc5637cb8c3274c83215c680822e4a0110d0a8315fcf03e43e8e3944edd758c8b173c4e0076f599aa1f853fa207d47cc95d201ae8d0206b71ad5aa8c3f59",
-                        "nodeType": "sealer"
-                    }
-                ],
-                "totalCount": 3
-            }
-            //var mock = await this.web3.getBlockNumber();
+            var mock = await this.web3.getConsensusList(params);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {

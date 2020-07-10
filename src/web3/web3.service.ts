@@ -20,6 +20,12 @@ export class Web3Service {
             map(response => response.data),
         ).toPromise();
     }
+    async getConsensusList(params) {
+        return this.httpService.get(config.contractAddr + "/WeBASE-Front/precompiled/consensus/list", params
+        ).pipe(
+            map(response => response.data),
+        ).toPromise();
+    }
 
     async getTransactionTotal() {
         return this.httpService.get(config.contractAddr + "/WeBASE-Front/1/web3/transaction-total",
