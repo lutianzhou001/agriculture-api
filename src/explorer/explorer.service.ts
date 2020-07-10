@@ -8,17 +8,35 @@ import {
     Coder,
     Erc20
 } from 'eth-coder';
+import { RealtimeTxDto } from './dto/realtime.tx.dto';
 
 @Injectable()
 export class ExplorerService {
     constructor(
         private readonly httpService: HttpService) { }
 
+    async getRealtimeTx() {
+        let realtimetx = new RealtimeTxDto()
+        realtimetx.abnormalNode = 0
+        realtimetx.blockNumber = await this.getBlockNumber()
+        realtimetx.nodeNumber = 4
+        realtimetx.normalNode = 4
+        realtimetx.transactionNumber = await this.getTransactionTotal().then((data) => { return data.txSum })
+        return realtimetx
+    }
     async getBlockNumber() {
         return this.httpService.get(config.contractAddr + "/WeBASE-Front/1/web3/blockNumber",
         ).pipe(
             map(response => response.data),
         ).toPromise();
+    }
+
+    async getBlockList(params) {
+        //let blockNumber = await this.getBlockNumber();
+        return await this.getBlockNumber().then((response) => {
+            console.log(response.data)
+            return response
+        })
     }
 
     async getBlockInfoByBlockNumber(blocknumber) {

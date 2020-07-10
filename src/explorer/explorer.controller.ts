@@ -9,6 +9,19 @@ import { ExplorerService } from './explorer.service';
 export class ExplorerController {
     constructor(private readonly explorer: ExplorerService) { }
 
+
+    @Get('realtimetx')
+    @ApiOperation({ description: '获取节点最新块高', summary: '获取节点最新块高' })
+    async getRealtimeTx(): Promise<IResponse> {
+        try {
+            var mock = await this.explorer.getRealtimeTx();
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
     @Get('blocks/total')
     @ApiOperation({ description: '获取节点最新块高', summary: '获取节点最新块高' })
     async getBlockNumber(): Promise<IResponse> {
@@ -24,10 +37,11 @@ export class ExplorerController {
     @Get('blocks/list')
     @ApiParam({ name: 'limit', example: 8 })
     @ApiParam({ name: 'offset', example: 0 })
-    @ApiOperation({ description: '获取交易列表', summary: '获取交易列表' })
-    async getBlock(@Param() params): Promise<IResponse> {
+    @ApiOperation({ description: '获取区块列表', summary: '获取区块列表' })
+    async getBlockList(@Param() params): Promise<IResponse> {
         try {
-            var mock = await this.explorer.getTransaction(params);
+            console.log("tetst")
+            var mock = await this.explorer.getBlockList(params);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -39,6 +53,7 @@ export class ExplorerController {
     @ApiOperation({ description: '通过块高获取块信息', summary: '通过块高获取块信息' })
     async getBlockInfoByBlockNumber(@Param() params): Promise<IResponse> {
         try {
+            console.log("111")
             var mock = await this.explorer.getBlockInfoByBlockNumber(params.blocknumber);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
