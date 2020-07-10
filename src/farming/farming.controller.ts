@@ -799,28 +799,4 @@ export class FarmingController {
             return new ResponseError('COMMON.ERROR', error);
         }
     }
-
-    @Get('evidences/list')
-    @ApiParam({ name: 'limit', required: false, example: 10 })
-    @ApiParam({ name: 'offset', required: false, example: 0 })
-    @ApiParam({ name: 'type', required: false, example: 'enterprises' })
-    @ApiOperation({ description: '溯源列表', summary: '溯源列表' })
-    async getEvidencesList(@Query() query): Promise<IResponse> {
-        try {
-            var mock = await this.farming.getEvidencesList(query);
-            return await new ResponseSuccess('COMMON.SUCCESS', mock);
-        }
-        catch (error) {
-            return new ResponseError('COMMON.ERROR', error);
-        }
-    }
-
-
 }
-
-
-
-
-
-
-

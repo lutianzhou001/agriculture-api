@@ -26,7 +26,7 @@ export class Web3Service {
         if (query.pageNumber === undefined) { query.pageNumber = 1 }
         return this.httpService.get(config.contractAddr + "/WeBASE-Front/precompiled/consensus/list?groupId=1&pageSize=" + query.pageSize + "&pageNumber=" + query.pageNumber
         ).pipe(
-            map(response => response.data),
+            map(response => response.data.data),
         ).toPromise();
     }
 

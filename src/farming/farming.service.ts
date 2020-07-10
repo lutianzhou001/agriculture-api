@@ -374,25 +374,4 @@ export class FarmingService {
         return await this.plantRecordModel.findOne({ hash: hash })
     }
 
-    async getEvidencesList(query) {
-        if (query.type === 'enterprises') {
-            return await this.findAllEnterprises(query);
-        } else if (query.type === 'greenhouses') {
-            return await this.findAllGreenhouses(query);
-        } else if (query.type === 'fields') {
-            return await this.findAllFields(query);
-        } else if (query.type === 'bases') {
-            return await this.findAllBases(query);
-        } else if (query.type === 'plants') {
-            return await this.findAllPlants(query);
-        } else if (query.type === 'plans') {
-            return await this.findAllPlans(query);
-        } else if (query.type === 'tools') {
-            return await this.findAllTools(query);
-        } else if (query.type === 'crops') {
-            return await this.findAllCrops(query);
-        } else if (query.type === 'devices') {
-            return await this.findAllDevices(query);
-        }
-    }
 }
