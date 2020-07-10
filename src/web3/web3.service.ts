@@ -1,13 +1,12 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import { default as config } from '../config'
 import { map } from 'rxjs/operators';
-import { FarmingService } from './../farming/farming.service';
 
 @Injectable()
 export class Web3Service {
     constructor(
         private readonly httpService: HttpService,
-        private readonly farming: FarmingService) { }
+    ) { }
 
     async getBlockNumber() {
         return this.httpService.get(config.contractAddr + "/WeBASE-Front/1/web3/blockNumber",
@@ -23,7 +22,9 @@ export class Web3Service {
         ).toPromise();
     }
     async getConsensusList(query) {
-        return this.httpService.get(config.contractAddr + "/WeBASE-Front/precompiled/consensus/list?groupId=" + query.groupId + "&pageSize=" + query.pageSize + "&pageNumber=" + query.pageNumber
+        if (query.pageSize === undefined) { query.pageSize = 10 }
+        if (query.pageNumber === undefined) { query.pageNumber = 1 }
+        return this.httpService.get(config.contractAddr + "/WeBASE-Front/precompiled/consensus/list?groupId=1&pageSize=" + query.pageSize + "&pageNumber=" + query.pageNumber
         ).pipe(
             map(response => response.data),
         ).toPromise();
@@ -48,28 +49,6 @@ export class Web3Service {
         ).pipe(
             map(response => response.data),
         ).toPromise();
-    }
-
-    async getEvidencesList(query) {
-        if (query.type === 'enterprises') {
-            return await this.farming.findAllEnterprises(query);
-        } else if (query.type === 'greenhouses') {
-            return await this.farming.findallGreenhouses(query);
-        } else if (query.type === 'fields') {
-            return await this.farming.findallFields(query);
-        } else if (query.type === 'bases') {
-            return await this.farming.findAllBases(query);
-        } else if (query.type === 'plants') {
-            return await this.farming.findAllPlants(query);
-        } else if (query.type === 'plans') {
-            return await this.farming.findAllPlans(query);
-        } else if (query.type === 'tools') {
-            return await this.farming.findAllTools(query);
-        } else if (query.type === 'crops') {
-            return await this.farming.findAllCrops(query);
-        } else if (query.type === 'devices') {
-            return await this.farming.findallDevices(query);
-        }
     }
 
     async getTransactionsList(query) {

@@ -278,7 +278,7 @@ export class FarmingService {
         return await this.landModel.findOne({ did: did })
     }
 
-    async findallGreenhouses(query) {
+    async findAllGreenhouses(query) {
         if (query.offset === null) { query.offset = 0 }
         if (query.limit === null) { query.limit = 20 }
         return await this.greenhouseModel.find().skip(Number(query.offset)).limit(Number(query.limit)).exec()
@@ -288,7 +288,7 @@ export class FarmingService {
         return await this.greenhouseModel.findOne({ hash: hash })
     }
 
-    async findallFields(query) {
+    async findAllFields(query) {
         if (query.offset === null) { query.offset = 0 }
         if (query.limit === null) { query.limit = 20 }
         return await this.fieldModel.find().skip(Number(query.offset)).limit(Number(query.limit)).exec()
@@ -298,7 +298,7 @@ export class FarmingService {
         return await this.fieldModel.findOne({ hash: hash })
     }
 
-    async findallProducers(query) {
+    async findAllProducers(query) {
         if (query.offset === null) { query.offset = 0 }
         if (query.limit === null) { query.limit = 20 }
         return await this.producerModel.find().skip(Number(query.offset)).limit(Number(query.limit)).exec()
@@ -340,7 +340,7 @@ export class FarmingService {
         return await this.planModel.find().skip(Number(query.offset)).limit(Number(query.limit)).exec()
     }
 
-    async findallDevices(query) {
+    async findAllDevices(query) {
         if (query.offset === null) { query.offset = 0 }
         if (query.limit === null) { query.limit = 20 }
         return await this.deviceModel.find().skip(Number(query.offset)).limit(Number(query.limit)).exec()
@@ -364,7 +364,7 @@ export class FarmingService {
         }
     }
 
-    async findallPlantRecords(query) {
+    async findAllPlantRecords(query) {
         if (query.offset === null) { query.offset = 0 }
         if (query.limit === null) { query.limit = 20 }
         return await this.plantRecordModel.find().skip(Number(query.offset)).limit(Number(query.limit)).exec()
@@ -372,5 +372,27 @@ export class FarmingService {
 
     async findPlantRecordByHash(hash) {
         return await this.plantRecordModel.findOne({ hash: hash })
+    }
+
+    async getEvidencesList(query) {
+        if (query.type === 'enterprises') {
+            return await this.findAllEnterprises(query);
+        } else if (query.type === 'greenhouses') {
+            return await this.findAllGreenhouses(query);
+        } else if (query.type === 'fields') {
+            return await this.findAllFields(query);
+        } else if (query.type === 'bases') {
+            return await this.findAllBases(query);
+        } else if (query.type === 'plants') {
+            return await this.findAllPlants(query);
+        } else if (query.type === 'plans') {
+            return await this.findAllPlans(query);
+        } else if (query.type === 'tools') {
+            return await this.findAllTools(query);
+        } else if (query.type === 'crops') {
+            return await this.findAllCrops(query);
+        } else if (query.type === 'devices') {
+            return await this.findAllDevices(query);
+        }
     }
 }

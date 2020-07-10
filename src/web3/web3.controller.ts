@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Query, Post, Body } from '@nestjs/common';
 import { IResponse } from 'src/common/interface/response.interface';
-import { ApiOperation, ApiBody, ApiParam, ApiProduces, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiBody, ApiParam, ApiProduces, ApiResponse, ApiQuery } from '@nestjs/swagger';
 import { ResponseSuccess, ResponseError } from '../common/dto/response.dto';
 import { Web3Service } from './web3.service';
 
@@ -51,9 +51,9 @@ export class Web3Controller {
     }
 
     @Get('consensus/list')
-    @ApiParam({ name: 'groupId', required: false, example: 1 })
-    @ApiParam({ name: 'pageSize', required: false, example: 10 })
-    @ApiParam({ name: 'pageNumber', required: false, example: 1 })
+    @ApiQuery({ name: 'groupId', required: false, example: 1 })
+    @ApiQuery({ name: 'pageSize', required: false, example: 10 })
+    @ApiQuery({ name: 'pageNumber', required: false, example: 1 })
     @ApiOperation({ description: '获取节点的list列表，列表包含节点id，节点共识状态', summary: '获取节点的list列表，列表包含节点id，节点共识状态' })
     async getConsensusList(@Query() query): Promise<IResponse> {
         try {
@@ -201,7 +201,7 @@ export class Web3Controller {
     }
 
     @Get('search')
-    @ApiParam({ name: 'input', example: 78 })
+    @ApiQuery({ name: 'input', example: 78 })
     @ApiOperation({ description: '如果输入块高就返回区块信息，如果输入交易hash就返回交易信息', summary: '如果输入块高就返回区块信息，如果输入交易hash就返回交易信息' })
     async getSearch(@Query() query): Promise<IResponse> {
         try {
@@ -214,8 +214,8 @@ export class Web3Controller {
     }
 
     @Get('transactions/list')
-    @ApiParam({ name: 'limit', required: false, example: 10 })
-    @ApiParam({ name: 'offset', required: false, example: 0 })
+    @ApiQuery({ name: 'limit', required: false, example: 10 })
+    @ApiQuery({ name: 'offset', required: false, example: 0 })
     @ApiOperation({ description: '交易列表', summary: '交易列表' })
     async getTransactionsList(@Query() query): Promise<IResponse> {
         try {
@@ -228,8 +228,8 @@ export class Web3Controller {
     }
 
     @Get('blocks/list')
-    @ApiParam({ name: 'limit', required: false, example: 10 })
-    @ApiParam({ name: 'offset', required: false, example: 0 })
+    @ApiQuery({ name: 'limit', required: false, example: 10 })
+    @ApiQuery({ name: 'offset', required: false, example: 0 })
     @ApiOperation({ description: '区块列表', summary: '区块列表' })
     async getBlocksList(@Query() query): Promise<IResponse> {
         try {
@@ -242,20 +242,6 @@ export class Web3Controller {
     }
 
 
-    @Get('evidences/list')
-    @ApiParam({ name: 'limit', required: false, example: 10 })
-    @ApiParam({ name: 'offset', required: false, example: 0 })
-    @ApiParam({ name: 'type', required: false, example: 'enterprises' })
-    @ApiOperation({ description: '溯源列表', summary: '溯源列表' })
-    async getEvidencesList(@Query() query): Promise<IResponse> {
-        try {
-            var mock = await this.web3.getEvidencesList(query);
-            return await new ResponseSuccess('COMMON.SUCCESS', mock);
-        }
-        catch (error) {
-            return new ResponseError('COMMON.ERROR', error);
-        }
-    }
 
     /*@Get('transByBlockHashAndIndex/:blockHash/:transactionIndex')
     @ApiOperation({ description: '根据块hash和交易index获取指定区块指定位置的交易信息', summary: '根据块hash和交易index获取指定区块指定位置的交易信息' })

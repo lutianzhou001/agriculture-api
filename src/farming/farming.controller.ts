@@ -287,7 +287,7 @@ export class FarmingController {
     @ApiOperation({ description: '获取大棚列表', summary: '获取大棚列表' })
     async findallGreenhouses(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallGreenhouses(query);
+            var mock = await this.farming.findAllGreenhouses(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -342,7 +342,7 @@ export class FarmingController {
     @ApiOperation({ description: '获取田的列表', summary: '获取田的列表' })
     async findallFields(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallFields(query);
+            var mock = await this.farming.findAllFields(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -398,7 +398,7 @@ export class FarmingController {
     @ApiOperation({ description: '获取农民列表', summary: '获取农民列表' })
     async findallProducers(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallProducers(query);
+            var mock = await this.farming.findAllProducers(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -643,7 +643,7 @@ export class FarmingController {
     @ApiOperation({ description: '获取设备列表', summary: '获取设备列表' })
     async findallDevices(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallDevices(query);
+            var mock = await this.farming.findAllDevices(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
@@ -792,7 +792,22 @@ export class FarmingController {
     @ApiOperation({ description: '获取作物流水记录列表', summary: '获取作物流水记录列表' })
     async findallPlantRecordss(@Query() query): Promise<IResponse> {
         try {
-            var mock = await this.farming.findallPlantRecords(query);
+            var mock = await this.farming.findAllPlantRecords(query);
+            return await new ResponseSuccess('COMMON.SUCCESS', mock);
+        }
+        catch (error) {
+            return new ResponseError('COMMON.ERROR', error);
+        }
+    }
+
+    @Get('evidences/list')
+    @ApiParam({ name: 'limit', required: false, example: 10 })
+    @ApiParam({ name: 'offset', required: false, example: 0 })
+    @ApiParam({ name: 'type', required: false, example: 'enterprises' })
+    @ApiOperation({ description: '溯源列表', summary: '溯源列表' })
+    async getEvidencesList(@Query() query): Promise<IResponse> {
+        try {
+            var mock = await this.farming.getEvidencesList(query);
             return await new ResponseSuccess('COMMON.SUCCESS', mock);
         }
         catch (error) {
