@@ -7,4 +7,5 @@ export default {
         "database": "testdb",
         "authSource": null
     },
+    "contractAddr": "http://47.56.165.246:5002"
 }
